@@ -5,7 +5,10 @@ export function Docs() {
   return (
     <div className="max-w-full py-8 text-black">
       <h2 className="mb-10 text-3xl font-medium">Documentation</h2>
-      <section className="mb-16 bg-white px-3 py-8 md:px-8">
+      <section
+        className="mb-16 px-3 py-8 md:px-8"
+        style={{ backgroundColor: "rgb(146 151 179 / 13%)" }}
+      >
         <h2 className="text-2xl font-medium">Features</h2>
         <ul className="mt-4 list-disc pl-6">
           <li className="mb-4">
@@ -25,7 +28,10 @@ export function Docs() {
         </ul>
       </section>
 
-      <section className="mb-16 bg-white px-3 py-8 md:px-8">
+      <section
+        className="mb-16 px-3 py-8 md:px-8"
+        style={{ backgroundColor: "rgb(146 151 179 / 13%)" }}
+      >
         <h2 className="mb-3 text-2xl font-medium">File Structure</h2>
         <div className="pl-2">
           <div className="mb-3 flex pl-5">
@@ -47,6 +53,10 @@ export function Docs() {
           <div className="mb-3 flex pl-16">
             <JSXIcon />
             <span className="pl-2">Sidebar.tsx</span>
+          </div>
+          <div className="mb-3 flex pl-16">
+            <JSXIcon />
+            <span className="pl-2">SidebarHeader.tsx</span>
           </div>
           <div className="mb-3 flex pl-16">
             <JSXIcon />
@@ -75,7 +85,10 @@ export function Docs() {
         </div>
       </section>
 
-      <section className="mb-16 bg-white px-3 py-8 md:px-8">
+      <section
+        className="mb-16 px-3 py-8 md:px-8"
+        style={{ backgroundColor: "rgb(146 151 179 / 13%)" }}
+      >
         <h2 className="text-2xl font-medium">File Structure explained</h2>
 
         <div className="mb-8 mt-4">
@@ -115,12 +128,19 @@ export function Docs() {
               </li>
             </ul>
           </div>
-          <div className="mt-6 flex flex-wrap pl-6 md:flex-nowrap">
+          <div className="mt-10 flex flex-wrap pl-6 md:flex-nowrap">
             <JSXIcon /> <span className="px-2 font-medium">Sidebar.tsx</span> :
             <p className="pl-1">responsable of the sidebar.</p>
             <p className="pl-1">
               compose <strong>SidebarHeader</strong> and{" "}
               <strong>SidebarItems</strong> components.
+            </p>
+          </div>
+          <div className="mt-6 flex flex-wrap pl-6 md:flex-nowrap">
+            <JSXIcon />{" "}
+            <span className="px-2 font-medium">SidebarHeader.tsx</span> :
+            <p className="pl-1">
+              contains the logo displayed on top of the sidebar
             </p>
           </div>
           <div className="mt-6 flex flex-wrap pl-6 md:flex-nowrap">
@@ -180,7 +200,10 @@ export function Docs() {
         </div>
       </section>
 
-      <section className="mb-16 bg-white px-3 py-8 md:px-8">
+      <section
+        className="mb-16 px-3 py-8 md:px-8"
+        style={{ backgroundColor: "rgb(146 151 179 / 13%)" }}
+      >
         <h2 className="text-2xl font-medium">Export</h2>
         <p className="mt-4">
           As there is no vendor lock-in, if you already have a dashboard, you
@@ -202,7 +225,10 @@ export function Docs() {
         </div>
       </section>
 
-      <section className="mb-16 bg-white px-3 py-8 md:px-8">
+      <section
+        className="mb-16 px-3 py-8 md:px-8"
+        style={{ backgroundColor: "rgb(146 151 179 / 13%)" }}
+      >
         <h2 className="text-2xl font-medium">Customization</h2>
         <p className="mt-5">
           You can customize everything according to your preferences if it

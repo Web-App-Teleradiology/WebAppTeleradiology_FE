@@ -3,23 +3,19 @@ export function Snippet() {
     <pre className="max-w-full overflow-x-auto rounded border bg-gray-100 px-4 py-1 font-mono text-sm text-black">
       {`[ 
   {
-    section: "Documents",
-    icon: <DocumentIcon/>,
+    section: "Section1",
     content: [
       {
-        title: "Taxes",
+        title: "Dashboard",
+        icon: <HomeIcon/>,
         link: "/",
       },
       {
-        title: "Travel",
-        link: "/documents/travel",
+        title: "Projects",
+        icon: <ProjectIcon/>,
+        link: "/admin/projects",
       },
-      {
-        title: "Insurance",
-        link: "/documents/insurance",
-      }
-    ]
-  }
+  },
 ]
 `}
     </pre>

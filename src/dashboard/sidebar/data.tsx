@@ -1,104 +1,54 @@
-import { EventIcon } from "./icons/EventIcon";
-import { GuideIcon } from "./icons/GuideIcon";
-import { MessageIcon } from "./icons/MessageIcon";
-import { PictureIcon } from "./icons/PictureIcon";
-import { DocumentIcon } from "./icons/DocumentIcon";
-import { StatisticsIcon } from "./icons/StatisticsIcon";
+import { DocIcon } from "./icons/DocIcon";
+import { HomeIcon } from "./icons/HomeIcon";
+import { TaskIcon } from "./icons/TaskIcon";
+import { ReportIcon } from "./icons/ReportIcon";
+import { ProjectIcon } from "./icons/ProjectIcon";
+import { SettingsIcon } from "./icons/SettingsIcon";
+import { CalendarIcon } from "./icons/CalendarIcon";
 
 export const data = [
   {
-    section: "Documents",
-    icon: <DocumentIcon />,
+    section: "Section1",
     content: [
       {
-        title: "Taxes",
-        link: "/",
+        title: "Dashboard",
+        icon: <HomeIcon />,
+        link: ".",
       },
       {
-        title: "Travel",
-        link: "/documents/travel",
+        title: "Projects",
+        icon: <ProjectIcon />,
+        link: "projects",
       },
       {
-        title: "Insurance",
-        link: "/documents/insurance",
-      },
-    ],
-  },
-  {
-    section: "Messages",
-    icon: <MessageIcon />,
-    content: [
-      {
-        title: "Unbox",
-        link: "/messages/unbox",
+        title: "My tasks",
+        icon: <TaskIcon />,
+        link: "tasks",
       },
       {
-        title: "Unread",
-        link: "/messages/unread",
+        title: "Calendar",
+        icon: <CalendarIcon />,
+        link: "calendar",
       },
       {
-        title: "Archived",
-        link: "/messages/archived",
-      },
-    ],
-  },
-  {
-    section: "Pictures",
-    icon: <PictureIcon />,
-    content: [
-      {
-        title: "Vacations",
-        link: "/pictures/vacations",
+        title: "Reports",
+        icon: <ReportIcon />,
+        link: "reports",
       },
       {
-        title: "Anniversary",
-        link: "/pictures/anniversary",
+        title: "Settings",
+        icon: <SettingsIcon />,
+        link: "settings",
       },
-      {
-        title: "University",
-        link: "/pictures/university",
-      },
-    ],
-  },
-  {
-    section: "Statistics",
-    icon: <StatisticsIcon />,
-    content: [
-      {
-        title: "Finances",
-        link: "/statistics/finances",
-      },
-      {
-        title: "Call Stats",
-        link: "/statistics/call-stats",
-      },
-      {
-        title: "Trip Logs",
-        link: "/statistics/trip-logs",
-      },
-    ],
-  },
-  {
-    section: "Events",
-    icon: <EventIcon />,
-    content: [
-      {
-        title: "Weddings",
-        link: "/events/weddings",
-      },
-      {
-        title: "Networking",
-        link: "/events/networking",
-      },
-    ],
-  },
-  {
-    section: "Guides",
-    icon: <GuideIcon />,
-    content: [
       {
         title: "Documentation",
-        link: "/guides/documentation",
+        icon: <DocIcon />,
+        link: "documentation",
+      },
+      {
+        title: "testing",
+        icon: <DocIcon />,
+        link: "testing",
       },
     ],
   },

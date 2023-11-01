@@ -1,5 +1,5 @@
 import React from "react";
-import { useRouter } from "next/router";
+import { useLocation } from "react-router-dom";
 
 interface DashboardProviderProps {
   children: React.ReactNode;
@@ -7,7 +7,7 @@ interface DashboardProviderProps {
 
 interface ProviderValues {
   sidebarOpen?: boolean;
-  toggleSidebar?: () => void;
+  openSidebar?: () => void;
   closeSidebar?: () => void;
 }
 
@@ -16,10 +16,10 @@ const Context = React.createContext<ProviderValues>({});
 
 export function DashboardProvider({ children }: DashboardProviderProps) {
   const [sidebarOpen, setSidebarOpen] = React.useState(false);
-  const router = useRouter();
+  const location = useLocation();
 
-  const toggleSidebar = React.useCallback(() => {
-    setSidebarOpen((prevState) => !prevState);
+  const openSidebar = React.useCallback(() => {
+    setSidebarOpen(true);
   }, []);
 
   const closeSidebar = React.useCallback(() => {
@@ -33,30 +33,22 @@ export function DashboardProvider({ children }: DashboardProviderProps) {
 
   // close Sidebar on route changes when viewport is less than 1024px
   React.useEffect(() => {
-    document.documentElement.style.overflow = "hidden";
-  }, []);
-
-  // close side navigation when route changes
-  React.useEffect(() => {
-    if (sidebarOpen) {
-      router.events.on("routeChangeStart", () => setSidebarOpen(false));
-    }
-
     return () => {
-      if (sidebarOpen) {
-        router.events.off("routeChangeStart", () => setSidebarOpen(false));
+      if (sidebarOpen && window.innerWidth < 1024) {
+        setSidebarOpen(false);
       }
     };
-  }, [sidebarOpen, router]);
+  }, [location, sidebarOpen]);
 
   return (
-    <Context.Provider value={{ sidebarOpen, toggleSidebar, closeSidebar }}>
+    <Context.Provider value={{ sidebarOpen, openSidebar, closeSidebar }}>
       {children}
     </Context.Provider>
   );
 }
 
 // custom hook to consume all context values { sidebarOpen, openSidebar, closeSidebar }
+// eslint-disable-next-line react-refresh/only-export-components
 export function useDashboardContext() {
   return React.useContext(Context);
 }
