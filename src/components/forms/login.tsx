@@ -43,6 +43,10 @@ export default function Form({ handleChange, submitForm, inputValue }: Props) {
           </button>
         </Link>
       </form>
+      <p className="flex gap-2">
+        don't have an account
+        <span className="cursor-pointer font-bold">Sign up</span>
+      </p>
     </div>
   );
 }

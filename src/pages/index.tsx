@@ -18,7 +18,11 @@ export default function LoginPage() {
   return (
     <>
       <div id="exseven">
-        <div className="flex h-screen items-center justify-center bg-gray-100">
+        <div className="flex h-screen flex-col items-center justify-center bg-gray-100">
+          <h1 className="flex items-center py-5 text-4xl font-bold">
+            <div className="rounded-3xl bg-black px-4 py-1 text-white">T</div>
+            eleradiology
+          </h1>
           <Form
             handleChange={handleChange}
             submitForm={submitForm}
