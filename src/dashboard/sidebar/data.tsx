@@ -4,7 +4,6 @@ import { TaskIcon } from "./icons/TaskIcon";
 import { ReportIcon } from "./icons/ReportIcon";
 import { ProjectIcon } from "./icons/ProjectIcon";
 import { SettingsIcon } from "./icons/SettingsIcon";
-import { CalendarIcon } from "./icons/CalendarIcon";
 
 export const data = [
   {
@@ -16,20 +15,16 @@ export const data = [
         link: ".",
       },
       {
-        title: "Projects",
+        title: "Radiologist",
         icon: <ProjectIcon />,
-        link: "projects",
+        link: "radiologist",
       },
       {
-        title: "My tasks",
+        title: "Specialist",
         icon: <TaskIcon />,
-        link: "tasks",
+        link: "specialist",
       },
-      {
-        title: "Calendar",
-        icon: <CalendarIcon />,
-        link: "calendar",
-      },
+
       {
         title: "Reports",
         icon: <ReportIcon />,
@@ -44,11 +39,6 @@ export const data = [
         title: "Documentation",
         icon: <DocIcon />,
         link: "documentation",
-      },
-      {
-        title: "testing",
-        icon: <DocIcon />,
-        link: "testing",
       },
     ],
   },

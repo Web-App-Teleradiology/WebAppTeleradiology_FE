@@ -4,13 +4,12 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import CalendarPage from "./pages/calendar";
+
 import LoginPage from "./pages";
-import ProjectsPage from "./pages/projects";
+import RadiologistPage from "./pages/radiologist";
 import ReportsPage from "./pages/reports";
 import SettingsPage from "./pages/settings";
-import Testing from "./pages/testing";
-import TasksPage from "./pages/tasks";
+import SpecialistPage from "./pages/specialist";
 import DashboardLayout from "./dashboard/Layout";
 import ErrorPage from "./pages/error";
 import HomePage from "./pages/home";
@@ -23,15 +22,13 @@ function App() {
         <Route path="/" element={<LoginPage />} />
         <Route path="*" element={<ErrorPage />} />
         <Route path="admin" element={<DashboardLayout />}>
-          <Route path="*" element={<ErrorPage />} />
           <Route index element={<HomePage />} />
-          <Route path="calendar" element={<CalendarPage />} />
-          <Route path="projects" element={<ProjectsPage />} />
+          <Route path="radiologist" element={<RadiologistPage />} />
           <Route path="reports" element={<ReportsPage />} />
           <Route path="Settings" element={<SettingsPage />} />
-          <Route path="testing" element={<Testing />} />
-          <Route path="tasks" element={<TasksPage />} />
+          <Route path="specialist" element={<SpecialistPage />} />
           <Route path="documentation" element={<DocsPage />} />
+          <Route path="*" element={<ErrorPage />} />
         </Route>
       </>
     )
