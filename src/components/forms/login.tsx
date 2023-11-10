@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom";
-
 interface formData {
   email: string;
   password: string;
@@ -33,15 +31,13 @@ export default function Form({ handleChange, submitForm, inputValue }: Props) {
             className="my-4 w-80 rounded-sm bg-gray-300 px-2 py-3 outline-gray-400 placeholder:text-slate-600"
           />
         </div>
-        <Link to="/admin">
-          <button
-            type="button"
-            onClick={submitForm}
-            className="my-4 w-80 rounded-sm bg-black/90 py-3 font-semibold text-white hover:shadow-lg"
-          >
-            Login
-          </button>
-        </Link>
+        <button
+          type="button"
+          onClick={submitForm}
+          className="my-4 w-80 rounded-sm bg-black/90 py-3 font-semibold text-white hover:shadow-lg"
+        >
+          Login
+        </button>
       </form>
       <p className="flex gap-2">
         don't have an account

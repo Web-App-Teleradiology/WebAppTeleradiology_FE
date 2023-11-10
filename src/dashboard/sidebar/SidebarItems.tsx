@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { data } from "./data";
-
+import { useAuth } from "../../middleware/Contexts";
 const style = {
   title: "font-normal mx-4 text-sm",
   active: "text-black font-medium",
@@ -9,6 +9,7 @@ const style = {
 };
 
 export function SidebarItems() {
+  const { logout } = useAuth();
   const { pathname } = useLocation();
   return (
     <div>
@@ -27,6 +28,12 @@ export function SidebarItems() {
               </Link>
             </li>
           ))}
+          <li>
+            <button className={style.link} onClick={logout}>
+              {/* <span>{item.icon}</span> */}
+              <span className={style.title}>Logout</span>
+            </button>
+          </li>
         </ul>
       ))}
     </div>

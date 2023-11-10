@@ -14,23 +14,29 @@ import DashboardLayout from "./dashboard/Layout";
 import ErrorPage from "./pages/error";
 import HomePage from "./pages/home";
 import DocsPage from "./pages/documentation";
+import { useAuth } from "./middleware/Contexts";
 
 function App() {
+  const { authToken } = useAuth();
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <>
+      <Route>
         <Route path="/" element={<LoginPage />} />
         <Route path="*" element={<ErrorPage />} />
-        <Route path="admin" element={<DashboardLayout />}>
-          <Route index element={<HomePage />} />
-          <Route path="radiologist" element={<RadiologistPage />} />
-          <Route path="reports" element={<ReportsPage />} />
-          <Route path="Settings" element={<SettingsPage />} />
-          <Route path="specialist" element={<SpecialistPage />} />
-          <Route path="documentation" element={<DocsPage />} />
-          <Route path="*" element={<ErrorPage />} />
-        </Route>
-      </>
+        {authToken !== null ? (
+          <Route element={<DashboardLayout />} errorElement={<ErrorPage />}>
+            <Route path="admin" element={<HomePage />} />
+            <Route path="radiologist" element={<RadiologistPage />} />
+            <Route path="reports" element={<ReportsPage />} />
+            <Route path="Settings" element={<SettingsPage />} />
+            <Route path="specialist" element={<SpecialistPage />} />
+            <Route path="documentation" element={<DocsPage />} />
+            <Route path="*" element={<ErrorPage />} />
+          </Route>
+        ) : (
+          <Route path="/" element={<LoginPage />} />
+        )}
+      </Route>
     )
   );
   return <RouterProvider router={router} />;
