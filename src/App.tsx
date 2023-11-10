@@ -21,11 +21,11 @@ function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route>
-        <Route path="/" element={<LoginPage />} />
+        {authToken === null && <Route path="/" element={<LoginPage />} />}
         <Route path="*" element={<ErrorPage />} />
         {authToken !== null ? (
           <Route element={<DashboardLayout />} errorElement={<ErrorPage />}>
-            <Route path="admin" element={<HomePage />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="radiologist" element={<RadiologistPage />} />
             <Route path="reports" element={<ReportsPage />} />
             <Route path="Settings" element={<SettingsPage />} />

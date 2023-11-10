@@ -30,7 +30,6 @@ export function SidebarItems() {
           ))}
           <li>
             <button className={style.link} onClick={logout}>
-              {/* <span>{item.icon}</span> */}
               <span className={style.title}>Logout</span>
             </button>
           </li>
