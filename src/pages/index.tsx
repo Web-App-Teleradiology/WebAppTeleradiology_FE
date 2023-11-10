@@ -1,9 +1,9 @@
 import { useState } from "react";
 import Form from "../components/forms/login";
 import { login } from "../components/api/auth";
+
 export default function LoginPage() {
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [loggedInUser, setLoggedInUser] = useState(null);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prevFormData) => {
       return {
@@ -15,17 +15,15 @@ export default function LoginPage() {
   const submitForm = async () => {
     try {
       const user = await login(formData.email, formData.password);
-      setLoggedInUser(user);
       localStorage.setItem("authToken", user.token);
       localStorage.setItem("user", JSON.stringify(user.user));
       window.location.reload();
     } catch (error) {
-      console.log(error);
-      setLoggedInUser(null);
+      console.error(error);
     }
     setFormData({ email: "", password: "" });
   };
-  console.log(loggedInUser);
+
   return (
     <>
       <div id="exseven">
