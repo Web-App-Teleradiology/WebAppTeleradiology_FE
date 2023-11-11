@@ -6,10 +6,20 @@ interface Props {
   handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   submitForm: () => void;
   inputValue: formData;
+  errorMessage: [string];
 }
-export default function Form({ handleChange, submitForm, inputValue }: Props) {
+export default function Form({
+  handleChange,
+  submitForm,
+  inputValue,
+  errorMessage,
+}: Props) {
   return (
     <div className="rounded-lg bg-white px-6 py-12 shadow-xl shadow-black/10">
+      {errorMessage.length && (
+        <p className="w-80 text-red-500">{errorMessage}</p>
+      )}
+
       <form className="block gap-4">
         <div>
           <input

@@ -4,6 +4,7 @@ import { login } from "../components/api/auth";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [errorMessage, setErrorMessage] = useState<[string]>([""]);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prevFormData) => {
       return {
@@ -12,16 +13,18 @@ export default function LoginPage() {
       };
     });
   };
-  const submitForm = async () => {
-    try {
-      const user = await login(formData.email, formData.password);
-      localStorage.setItem("authToken", user.token);
-      localStorage.setItem("user", JSON.stringify(user.user));
-      window.location.reload();
-    } catch (error) {
-      console.error(error);
-    }
-    setFormData({ email: "", password: "" });
+  const submitForm = () => {
+    login(formData.email, formData.password)
+      .then((res) => {
+        if (!res) throw new Error("UnAutholized Incorrect email and password");
+        localStorage.setItem("authToken", res.token);
+        localStorage.setItem("user", JSON.stringify(res.user.names));
+        window.location.reload();
+      })
+      .catch((error) => {
+        setErrorMessage(error.response.data.message);
+      })
+      .finally(() => setFormData({ email: "", password: "" }));
   };
 
   return (
@@ -36,6 +39,7 @@ export default function LoginPage() {
             handleChange={handleChange}
             submitForm={submitForm}
             inputValue={formData}
+            errorMessage={errorMessage}
           />
         </div>
       </div>

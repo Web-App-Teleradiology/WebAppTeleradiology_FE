@@ -8,7 +8,7 @@ import {
 
 interface AuthContextType {
   authToken: string | null;
-  authUser: unknown | null;
+  authUser: string | null;
   logout: () => void;
 }
 
@@ -22,7 +22,7 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [authToken, setAuthToken] = useState<string | null>(null);
-  const [authUser, setAuthUser] = useState({});
+  const [authUser, setAuthUser] = useState<string | null>(null);
   useEffect(() => {
     const storedToken = localStorage.getItem("authToken");
     const storedUser = localStorage.getItem("user");
@@ -30,8 +30,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setAuthToken(storedToken);
     }
     if (storedUser) {
-      const parsedUser = JSON.parse(storedUser);
-      setAuthUser(parsedUser);
+      setAuthUser(storedUser);
     }
   }, []);
   const logout = () => {
