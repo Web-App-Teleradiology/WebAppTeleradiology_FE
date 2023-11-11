@@ -2,9 +2,11 @@
 import axios from "axios";
 import { Link } from "../../config";
 import { getAuthToken } from "../../utils/auth";
-export const getRadiologyPatient = async () => {
+import { radiologyDto } from "../../types/interface";
+
+export const postRadiologyPatient = async (formData: radiologyDto) => {
   try {
-    const response = await axios.get(`${Link.Api}/radiology`, {
+    const response = await axios.post(`${Link.Api}/radiology`, formData, {
       headers: { Authorization: `Bearer ${getAuthToken()}` },
     });
     return response.data;

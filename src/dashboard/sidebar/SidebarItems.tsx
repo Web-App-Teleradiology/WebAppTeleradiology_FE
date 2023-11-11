@@ -1,4 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
+import { HomeIcon } from "./icons/HomeIcon";
 import { data } from "./data";
 import { useAuth } from "../../middleware/Contexts";
 const style = {
@@ -29,9 +30,12 @@ export function SidebarItems() {
             </li>
           ))}
           <li>
-            <button className={style.link} onClick={logout}>
-              <span className={style.title}>Logout</span>
-            </button>
+            <Link to="/">
+              <button className={style.link} onClick={logout}>
+                <span>{<HomeIcon />}</span>
+                <span className={style.title}>Logout</span>
+              </button>
+            </Link>
           </li>
         </ul>
       ))}

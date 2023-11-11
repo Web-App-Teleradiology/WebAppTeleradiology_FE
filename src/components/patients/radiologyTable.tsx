@@ -88,7 +88,7 @@ export default function RadiologyTable({ patients }: any) {
                         href="#"
                         className="text-indigo-600 hover:text-indigo-900"
                       >
-                        Edit
+                        Update
                       </a>
                     </td>
                   </tr>

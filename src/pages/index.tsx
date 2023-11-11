@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Form from "../components/forms/login";
-import { login } from "../components/api/auth";
+import { login } from "../components/api";
 
 export default function LoginPage() {
   const [formData, setFormData] = useState({ email: "", password: "" });
