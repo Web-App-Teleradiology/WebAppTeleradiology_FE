@@ -13,32 +13,38 @@ export const data = [
         title: "Dashboard",
         icon: <HomeIcon />,
         link: ".",
+        role: ["admin", "specialist", "radiologist"],
       },
       {
         title: "Radiologist",
         icon: <ProjectIcon />,
         link: "radiologist",
+        role: ["admin", "radiologist"],
       },
       {
         title: "Specialist",
         icon: <TaskIcon />,
         link: "specialist",
+        role: ["admin", "specialist"],
       },
 
       {
         title: "Reports",
         icon: <ReportIcon />,
         link: "reports",
+        role: ["admin", "specialist", "radiologist"],
       },
       {
         title: "Settings",
         icon: <SettingsIcon />,
         link: "settings",
+        role: ["admin"],
       },
       {
         title: "Documentation",
         icon: <DocIcon />,
         link: "documentation",
+        role: ["admin"],
       },
     ],
   },

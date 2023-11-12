@@ -18,7 +18,7 @@ export default function LoginPage() {
       .then((res) => {
         if (!res) throw new Error("UnAutholized Incorrect email and password");
         localStorage.setItem("authToken", res.token);
-        localStorage.setItem("user", JSON.stringify(res.user.names));
+        localStorage.setItem("user", JSON.stringify(res.user));
         window.location.reload();
       })
       .catch((error) => {

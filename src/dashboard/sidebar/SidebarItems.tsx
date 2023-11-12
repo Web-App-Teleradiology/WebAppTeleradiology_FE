@@ -10,8 +10,10 @@ const style = {
 };
 
 export function SidebarItems() {
-  const { logout } = useAuth();
+  const { logout, authUser } = useAuth();
   const { pathname } = useLocation();
+  // const role = JSON.parse(authUser);
+  // const items = data.filter;
   return (
     <div>
       {data.map(({ section, content }) => (
