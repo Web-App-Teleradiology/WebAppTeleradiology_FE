@@ -3,7 +3,7 @@ import RadiologyTable from "../components/patients/radiologyTable";
 import RadiologyForm from "../components/forms/radiologyForm";
 import { getRadiologyPatient } from "../components/api";
 
-export default function RadiologistPage() {
+export default function SpecialistPage() {
   const [patients, setPatients] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
@@ -13,13 +13,13 @@ export default function RadiologistPage() {
   }, []);
   return (
     <div className="mt-4">
-      <div className="mb-5 flex justify-between text-2xl font-medium text-gray-700 md:pr-20">
-        <p>Radiology</p>
+      <div className="mb-5 flex justify-between font-medium text-gray-700 md:pr-20">
+        <p className="text-2xl">Specialist</p>
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="rounded-md bg-gray-200 p-3 text-lg text-black/90 hover:shadow-md"
+          className="rounded-md bg-gray-200 p-3 text-black/90 hover:shadow-md"
         >
-          {isOpen ? "Close patient form" : "Add new patient"}
+          {isOpen ? "Close form" : "Add patient"}
         </button>
       </div>
       <div className="flex">

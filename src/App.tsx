@@ -4,15 +4,15 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-
+import "./index.css";
 import LoginPage from "./pages";
-import RadiologistPage from "./pages/radiologist";
-import ReportsPage from "./pages/reports";
-import SettingsPage from "./pages/settings";
-import SpecialistPage from "./pages/specialist";
+import RadiologistPage from "./pages/radiologistPage";
+import ReportsPage from "./pages/reportsPage";
+import SettingsPage from "./pages/settingsPage";
+import SpecialistPage from "./pages/specialistPage";
 import DashboardLayout from "./dashboard/Layout";
-import ErrorPage from "./pages/error";
-import HomePage from "./pages/home";
+import ErrorPage from "./pages/errorPage";
+import HomePage from "./pages/homePage";
 import DocsPage from "./pages/documentation";
 import { useAuth } from "./middleware/Contexts";
 
@@ -22,7 +22,6 @@ function App() {
     createRoutesFromElements(
       <Route>
         {authToken === null && <Route path="/" element={<LoginPage />} />}
-        <Route path="*" element={<ErrorPage />} />
         {authToken !== null ? (
           <Route element={<DashboardLayout />} errorElement={<ErrorPage />}>
             <Route path="/" element={<HomePage />} />
@@ -36,6 +35,7 @@ function App() {
         ) : (
           <Route path="/" element={<LoginPage />} />
         )}
+        <Route path="*" element={<ErrorPage />} />
       </Route>
     )
   );
