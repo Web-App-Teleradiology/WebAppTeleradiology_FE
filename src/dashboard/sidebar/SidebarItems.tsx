@@ -2,6 +2,7 @@ import { Link, useLocation } from "react-router-dom";
 import { HomeIcon } from "./icons/HomeIcon";
 import { data } from "./data";
 import { useAuth } from "../../middleware/Contexts";
+
 const style = {
   title: "font-normal mx-4 text-sm",
   active: "text-black font-medium",
@@ -12,11 +13,23 @@ const style = {
 export function SidebarItems() {
   const { logout, authUser } = useAuth();
   const { pathname } = useLocation();
-  // const role = JSON.parse(authUser);
-  // const items = data.filter;
+
+  //getting role from auth user
+  let role: string;
+  {
+    authUser !== null && (role = JSON.parse(authUser).role);
+  }
+
+  //filtering sidebar items according to roles of user who are logged in
+  const items = [
+    {
+      ...data[0],
+      content: data[0].content.filter((item) => item?.role.includes(role)),
+    },
+  ];
   return (
     <div>
-      {data.map(({ section, content }) => (
+      {items.map(({ section, content }) => (
         <ul className="border-b py-2 last:border-none" key={section}>
           {content.map((item) => (
             <li key={item.title}>
