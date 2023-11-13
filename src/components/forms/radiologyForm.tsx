@@ -63,7 +63,7 @@ const RadiologyForm = () => {
       "my-2 w-full rounded-sm bg-black/90 py-3 font-semibold text-gray-100 hover:shadow-lg",
   };
   return (
-    <div className="">
+    <div>
       {errorMessage.length && <p className="text-red-400">{errorMessage}</p>}
       <form className="block gap-4">
         <div className="block">

@@ -14,6 +14,7 @@ import DashboardLayout from "./dashboard/Layout";
 import ErrorPage from "./pages/errorPage";
 import HomePage from "./pages/homePage";
 import DocsPage from "./pages/documentation";
+import PatientDetailPage from "./pages/patientDetailPage";
 import { useAuth } from "./middleware/Contexts";
 
 function App() {
@@ -26,9 +27,11 @@ function App() {
           <Route element={<DashboardLayout />} errorElement={<ErrorPage />}>
             <Route path="/" element={<HomePage />} />
             <Route path="radiologist" element={<RadiologistPage />} />
+            <Route path="radiologist/:id" element={<PatientDetailPage />} />
             <Route path="reports" element={<ReportsPage />} />
             <Route path="Settings" element={<SettingsPage />} />
             <Route path="specialist" element={<SpecialistPage />} />
+            <Route path="specialist/:id" element={<PatientDetailPage />} />
             <Route path="documentation" element={<DocsPage />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>

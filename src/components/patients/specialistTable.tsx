@@ -1,6 +1,4 @@
-import { Link } from "react-router-dom";
-
-export default function RadiologyTable({ patients }: any) {
+export default function SpecialistTable({ patients }: any) {
   return (
     <div className="container mt-10 border">
       <div className="py-8">
@@ -80,12 +78,12 @@ export default function RadiologyTable({ patients }: any) {
                       </span>
                     </td>
                     <td className="flex gap-4 border-b border-gray-200 p-6 text-sm">
-                      <Link
-                        to={`${patient._id}`}
+                      <a
+                        href="#"
                         className="text-green-600 hover:text-green-900"
                       >
                         View
-                      </Link>
+                      </a>
                       <a
                         href="#"
                         className="text-indigo-600 hover:text-indigo-900"

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import RadiologyTable from "../components/patients/radiologyTable";
-import RadiologyForm from "../components/forms/radiologyForm";
+import SpecialistTable from "../components/patients/specialistTable";
+import SpecialistForm from "../components/forms/specialistForm";
 import { getRadiologyPatient } from "../components/api";
 
 export default function SpecialistPage() {
@@ -24,11 +24,11 @@ export default function SpecialistPage() {
       </div>
       <div className="flex">
         <div className={`flex ${isOpen ? "w-3/5" : "w-full"}`}>
-          <RadiologyTable patients={patients} />
+          <SpecialistTable patients={patients} />
         </div>
         {isOpen && (
           <div className="flex w-2/5 justify-center pt-10">
-            <RadiologyForm />
+            <SpecialistForm />
           </div>
         )}
       </div>

@@ -17,5 +17,6 @@ module.exports = {
   ],
   rules: {
     "react-refresh/only-export-components": "off",
+    "no-useless-catch": "off",
   },
 };

@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-catch */
 import axios from "axios";
 import { Link } from "../../config";
 export const login = async (email: string, password: string) => {

@@ -1,3 +1,4 @@
+import { Status, Role } from "./enum";
 export interface radiologyDto {
   patientId: string;
   firstName: string;
@@ -7,5 +8,10 @@ export interface radiologyDto {
   userId: string;
   image: string;
   desc: string;
+  comment: string;
+}
+
+export interface specialistDto {
+  status: Status | undefined;
   comment: string;
 }
