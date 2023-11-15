@@ -3,11 +3,21 @@ import { Link } from "../../config";
 import { getAuthToken } from "../../utils/auth";
 import { specialistDto } from "../../types/interface";
 
-export const postSpecialistPatient = async (formData: specialistDto) => {
+export const postSpecialistPatient = async (
+  id: string,
+  formData: specialistDto
+) => {
+  console.log(getAuthToken());
+  console.log(id, formData);
   try {
-    const response = await axios.post(`${Link.Api}/radiology`, formData, {
-      headers: { Authorization: `Bearer ${getAuthToken()}` },
-    });
+    const response = await axios.patch(
+      `${Link.Api}/radiology/specialist/${id}`,
+      formData,
+      {
+        headers: { Authorization: `Bearer ${getAuthToken()}` },
+      }
+    );
+    console.log("response", response);
     return response.data;
   } catch (error) {
     throw error;

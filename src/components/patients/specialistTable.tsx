@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function SpecialistTable({ patients }: any) {
   return (
     <div className="container mt-10 border">
@@ -78,18 +80,18 @@ export default function SpecialistTable({ patients }: any) {
                       </span>
                     </td>
                     <td className="flex gap-4 border-b border-gray-200 p-6 text-sm">
-                      <a
-                        href="#"
+                      <Link
+                        to={`${patient._id}`}
                         className="text-green-600 hover:text-green-900"
                       >
                         View
-                      </a>
-                      <a
-                        href="#"
+                      </Link>
+                      <Link
+                        to="#"
                         className="text-indigo-600 hover:text-indigo-900"
                       >
                         Update
-                      </a>
+                      </Link>
                     </td>
                   </tr>
                 ))}

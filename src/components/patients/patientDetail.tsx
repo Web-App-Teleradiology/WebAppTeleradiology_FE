@@ -1,5 +1,5 @@
 const PatientDetail = ({ patient }: any) => {
-  console.log(patient);
+  // console.log(patient);
   return (
     <div>
       <p>{patient?.image}</p>

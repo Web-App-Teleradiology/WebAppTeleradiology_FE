@@ -40,12 +40,6 @@ export const data = [
         link: "settings",
         role: ["admin"],
       },
-      {
-        title: "Documentation",
-        icon: <DocIcon />,
-        link: "documentation",
-        role: ["admin"],
-      },
     ],
   },
 ];

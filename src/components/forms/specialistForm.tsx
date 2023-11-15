@@ -1,12 +1,13 @@
 import { useState } from "react";
 import { postSpecialistPatient } from "../api";
+import { Status } from "../../types/enum";
+import { ToastContainer, toast } from "react-toastify";
 
-const SpecialistForm = () => {
+const SpecialistForm = ({ id }: { id?: string }) => {
   const [formData, setFormData] = useState({
-    status: undefined,
+    status: Status.Status,
     comment: "",
   });
-  const [errorMessage, setErrorMessage] = useState<[string]>([""]);
 
   const handleChangeTextarea = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -24,22 +25,27 @@ const SpecialistForm = () => {
       [event.target.name]: event.target.value,
     }));
   };
-  console.log(formData);
   const submitForm = () => {
-    postSpecialistPatient(formData)
-      .then((res) => {
-        if (!res) throw new Error("You can not add patient comment");
-        return res;
-      })
-      .catch((error) => {
-        setErrorMessage(error.response.data.message);
-      })
-      .finally(() =>
-        setFormData({
-          status: undefined,
-          comment: "",
+    if (id)
+      postSpecialistPatient(id + 1, formData)
+        .then((res) => {
+          if (!res) throw new Error("You can not add patient comment");
+          toast("comment added successfully", {
+            type: "success",
+          });
+          return res;
         })
-      );
+        .catch((error) => {
+          toast(error.response.data.message, {
+            type: "error",
+          });
+        })
+        .finally(() => {
+          setFormData({
+            status: Status.Status,
+            comment: "",
+          });
+        });
   };
   const style = {
     input:
@@ -50,7 +56,7 @@ const SpecialistForm = () => {
   };
   return (
     <div className="w-4/5">
-      {errorMessage.length && <p className="text-red-400">{errorMessage}</p>}
+      <ToastContainer position="top-right" newestOnTop />
       <form>
         <select
           name="status"

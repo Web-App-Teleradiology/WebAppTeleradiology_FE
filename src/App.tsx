@@ -13,9 +13,9 @@ import SpecialistPage from "./pages/specialistPage";
 import DashboardLayout from "./dashboard/Layout";
 import ErrorPage from "./pages/errorPage";
 import HomePage from "./pages/homePage";
-import DocsPage from "./pages/documentation";
 import PatientDetailPage from "./pages/patientDetailPage";
 import { useAuth } from "./middleware/Contexts";
+import "react-toastify/ReactToastify.min.css";
 
 function App() {
   const { authToken } = useAuth();
@@ -32,7 +32,6 @@ function App() {
             <Route path="Settings" element={<SettingsPage />} />
             <Route path="specialist" element={<SpecialistPage />} />
             <Route path="specialist/:id" element={<PatientDetailPage />} />
-            <Route path="documentation" element={<DocsPage />} />
             <Route path="*" element={<ErrorPage />} />
           </Route>
         ) : (
