@@ -39,7 +39,8 @@ const SpecialistForm = ({ id }: { id?: string }) => {
           return res;
         })
         .catch((error) => {
-          toast(error.response.data.message, {
+          const reserror = error.response.data.message;
+          toast(typeof reserror !== "string" ? reserror.join(",") : reserror, {
             type: "error",
           });
         })

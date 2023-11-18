@@ -39,16 +39,13 @@ const RadiologyForm = () => {
         if (!res) throw new Error("You can not add patient");
         toast("Patient added successfully", {
           type: "success",
-          position: "top-center",
-          hideProgressBar: true,
         });
         return res;
       })
       .catch((error) => {
-        toast(error.response.data.message, {
+        const reserror = error.response.data.message;
+        toast(typeof reserror !== "string" ? reserror.join(",") : reserror, {
           type: "error",
-          position: "top-center",
-          hideProgressBar: true,
         });
       })
       .finally(() =>
