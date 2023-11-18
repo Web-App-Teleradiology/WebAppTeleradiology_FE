@@ -6,6 +6,7 @@ export enum Status {
 }
 
 export enum Role {
+  Role = "",
   Specialist = "specialist",
   Admin = "admin",
   Radiologist = "radiologist",

@@ -1,28 +1,16 @@
 import { useState } from "react";
-import { postRadiologyPatient } from "../api";
+import { postUser } from "../api";
+import { Role } from "../../types/enum";
 import { ToastContainer, toast } from "react-toastify";
 
-const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
+const UserForm = () => {
   const [formData, setFormData] = useState({
-    patientId: "",
-    image: "",
     firstName: "",
     lastName: "",
     email: "",
-    userId: "",
-    age: "",
-    desc: "",
-    comment: "",
+    role: Role.Role,
+    password: "",
   });
-
-  const handleChangeTextarea = (
-    event: React.ChangeEvent<HTMLTextAreaElement>
-  ) => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [event.target.name]: event.target.value,
-    }));
-  };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prevFormData) => {
@@ -32,15 +20,21 @@ const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
       };
     });
   };
-
+  const handleChangeSelectedInput = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [event.target.name]: event.target.value,
+    }));
+  };
   const submitForm = () => {
-    postRadiologyPatient(formData)
+    postUser(formData)
       .then((res) => {
-        if (!res) throw new Error("You can not add patient");
-        toast("Patient added successfully", {
+        if (!res) throw new Error("You can not add user");
+        toast("User added successfully", {
           type: "success",
         });
-        onGetPatient();
         return res;
       })
       .catch((error) => {
@@ -51,15 +45,11 @@ const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
       })
       .finally(() =>
         setFormData({
-          patientId: "",
-          image: "",
           firstName: "",
           lastName: "",
           email: "",
-          userId: "",
-          age: "",
-          desc: "",
-          comment: "",
+          role: Role.Role,
+          password: "",
         })
       );
   };
@@ -71,35 +61,13 @@ const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
       "my-2 w-full rounded-sm bg-black/90 py-3 font-semibold text-gray-100 hover:shadow-lg",
   };
   return (
-    <div>
+    <>
       <ToastContainer
         position="top-center"
         hideProgressBar={true}
         newestOnTop
       />
-      <form className="block gap-4">
-        <div className="block">
-          <label htmlFor="myfile">Select an image file:</label>
-          <input
-            type="file"
-            value={formData.image}
-            multiple
-            onChange={handleChange}
-            title="Choose a video please"
-            name="image"
-            className={style.input}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            value={formData.patientId}
-            onChange={handleChange}
-            placeholder="patient Id"
-            name="patientId"
-            className={style.input}
-          />
-        </div>
+      <form className="w-4/5">
         <div>
           <input
             type="text"
@@ -130,32 +98,25 @@ const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
             className={style.input}
           />
         </div>
+        <select
+          name="role"
+          value={formData.role}
+          onChange={handleChangeSelectedInput}
+          className={`${style.input} cursor-pointer`}
+        >
+          <option value="#">select role</option>
+          <option value="specialist">Specialist</option>
+          <option value="admin">Admin</option>
+          <option value="radiologist">Radiologist</option>
+        </select>
+        <div></div>
         <div>
           <input
-            type="text"
-            value={formData.age}
+            type="password"
+            value={formData.password}
             onChange={handleChange}
-            placeholder="Age"
-            name="age"
-            className={style.input}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            value={formData.userId}
-            onChange={handleChange}
-            placeholder="user Id"
-            name="userId"
-            className={style.input}
-          />
-        </div>
-        <div>
-          <textarea
-            value={formData.desc}
-            onChange={handleChangeTextarea}
-            placeholder="Description"
-            name="desc"
+            placeholder="Password"
+            name="password"
             className={style.input}
           />
         </div>
@@ -164,8 +125,8 @@ const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
           Add patient
         </button>
       </form>
-    </div>
+    </>
   );
 };
 
-export default RadiologyForm;
+export default UserForm;

@@ -3,7 +3,13 @@ import { postSpecialistPatient } from "../api";
 import { Status } from "../../types/enum";
 import { ToastContainer, toast } from "react-toastify";
 
-const SpecialistForm = ({ id }: { id?: string }) => {
+const SpecialistForm = ({
+  id,
+  onUpdatePatient,
+}: {
+  id?: string;
+  onUpdatePatient: () => void;
+}) => {
   const [formData, setFormData] = useState({
     status: Status.Status,
     comment: "",
@@ -36,6 +42,7 @@ const SpecialistForm = ({ id }: { id?: string }) => {
             position: "top-center",
             hideProgressBar: true,
           });
+          onUpdatePatient();
           return res;
         })
         .catch((error) => {

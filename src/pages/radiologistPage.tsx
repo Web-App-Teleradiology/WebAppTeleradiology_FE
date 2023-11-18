@@ -7,11 +7,14 @@ import { getRadiologyPatient } from "../components/api";
 export default function RadiologistPage() {
   const [patients, setPatients] = useState<patientDto[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  useEffect(() => {
+  const getPatient = () => {
     getRadiologyPatient().then((res) => {
       setPatients(res.reverse());
     });
-  }, []);
+  };
+  useEffect(() => {
+    getPatient();
+  });
   return (
     <div className="mt-4">
       <div className="mb-5 flex justify-between font-medium text-gray-700 md:pr-20">
@@ -29,7 +32,7 @@ export default function RadiologistPage() {
         </div>
         {isOpen && (
           <div className="flex w-2/5 justify-center pt-10">
-            <RadiologyForm />
+            <RadiologyForm onGetPatient={getPatient} />
           </div>
         )}
       </div>

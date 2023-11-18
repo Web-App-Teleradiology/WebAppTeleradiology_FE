@@ -1,23 +1,6 @@
 import { Link } from "react-router-dom";
-import { patientDto } from "../../types/interface";
-import { Status } from "../../types/enum";
-export default function SpecialistTable({
-  patients,
-}: {
-  patients: patientDto[];
-}) {
-  function getStatusColor(status: Status) {
-    switch (status) {
-      case Status.Completed:
-        return "bg-[green]";
-      case Status.Pending:
-        return "bg-[black]";
-      case Status.Inprogress:
-        return "bg-[orange]";
-      default:
-        return "bg-gray";
-    }
-  }
+import { userDto } from "../../types/interface";
+export default function UserTable({ users }: { users: userDto[] }) {
   return (
     <div className="container mt-10 border">
       <div className="py-8">
@@ -42,7 +25,7 @@ export default function SpecialistTable({
                     scope="col"
                     className="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
                   >
-                    Age
+                    Role
                   </th>
 
                   <th
@@ -51,12 +34,7 @@ export default function SpecialistTable({
                   >
                     Created_at
                   </th>
-                  <th
-                    scope="col"
-                    className="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
-                  >
-                    status
-                  </th>
+
                   <th
                     scope="col"
                     className="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase text-green-900"
@@ -66,41 +44,31 @@ export default function SpecialistTable({
                 </tr>
               </thead>
               <tbody className="text-black">
-                {patients.map((patient) => (
-                  <tr key={patient._id} className="cursor-pointer">
+                {users.map((user) => (
+                  <tr key={user._id} className="cursor-pointer">
                     <td className="border-b border-gray-200 p-5 text-sm">
                       <div className="flex items-center">
                         <div className="ml-3">
                           <p className="whitespace-nowrap">
-                            {`${patient.firstName} ${patient.lastName}`}
+                            {`${user.firstName} ${user.lastName}`}
                           </p>
                         </div>
                       </div>
                     </td>
                     <td className="border-b border-gray-200 p-5 text-sm">
-                      <p className="whitespace-nowrap">{patient.email}</p>
+                      <p className="whitespace-nowrap">{user.email}</p>
                     </td>
                     <td className="border-b border-gray-200 p-5 text-sm">
-                      <p className="whitespace-nowrap">{patient.age}</p>
+                      <p className="whitespace-nowrap">{user.role}</p>
                     </td>
 
                     <td className="border-b border-gray-200 p-5 text-sm">
                       <p className="whitespace-nowrap">12 dec 2018</p>
                     </td>
-                    <td className="border-b border-gray-200 p-5 text-sm">
-                      <span className="relative inline-block px-3 py-1 font-semibold leading-tight">
-                        <span
-                          aria-hidden="true"
-                          className={`absolute inset-0 rounded-full opacity-50 ${getStatusColor(
-                            patient.status
-                          )}`}
-                        />
-                        <span className="relative">{patient.status}</span>
-                      </span>
-                    </td>
+
                     <td className="flex gap-4 border-b border-gray-200 p-6 text-sm">
                       <Link
-                        to={`${patient._id}`}
+                        to="#"
                         className="text-green-600 hover:text-green-900"
                       >
                         View

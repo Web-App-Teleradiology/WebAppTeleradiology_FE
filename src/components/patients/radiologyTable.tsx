@@ -10,13 +10,13 @@ export default function RadiologyTable({
   function getStatusColor(status: Status) {
     switch (status) {
       case Status.Completed:
-        return "green";
+        return "bg-[green]";
       case Status.Pending:
-        return "black";
+        return "bg-[black]";
       case Status.Inprogress:
-        return "orange";
+        return "bg-[orange]";
       default:
-        return "gray";
+        return "bg-gray";
     }
   }
   return (
@@ -91,12 +91,11 @@ export default function RadiologyTable({
                       <span className="relative inline-block px-3 py-1 font-semibold leading-tight">
                         <span
                           aria-hidden="true"
-                          className="absolute inset-0 rounded-full opacity-50"
-                          style={{
-                            backgroundColor: getStatusColor(patient.status),
-                          }}
+                          className={`absolute inset-0 rounded-full opacity-50 ${getStatusColor(
+                            patient.status
+                          )}`}
                         />
-                        <span className="relative pb-3 text-gray-100">
+                        <span className="relative pb-3 text-black">
                           {patient.status}
                         </span>
                       </span>

@@ -1,4 +1,4 @@
-import { Status } from "./enum";
+import { Role, Status } from "./enum";
 export interface patientDto {
   _id?: string;
   patientId: string;
@@ -27,4 +27,13 @@ export interface addPatientDto {
 export interface specialistDto {
   status: Status;
   comment: string;
+}
+
+export interface userDto {
+  _id?: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  role: Role;
 }

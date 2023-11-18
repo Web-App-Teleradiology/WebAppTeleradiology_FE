@@ -10,12 +10,15 @@ const SpecialistPatientDetailPage = () => {
   const [patient, setPatient] = useState({});
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
+  const updatePatientDetail = () => {
     if (id)
       getPatient(id).then((res) => {
         setPatient(res);
       });
-  }, [id]);
+  };
+  useEffect(() => {
+    updatePatientDetail();
+  });
 
   return (
     <div>
@@ -35,7 +38,7 @@ const SpecialistPatientDetailPage = () => {
         </div>
         {isOpen && (
           <div className="flex w-2/5 justify-center pt-10">
-            <SpecialistForm id={id} />
+            <SpecialistForm id={id} onUpdatePatient={updatePatientDetail} />
           </div>
         )}
       </div>
