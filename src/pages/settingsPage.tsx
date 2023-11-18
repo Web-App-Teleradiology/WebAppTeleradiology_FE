@@ -7,11 +7,16 @@ import { getUsers } from "../components/api";
 export default function SettingsPage() {
   const [users, setUsers] = useState<userDto[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  useEffect(() => {
+
+  const fetchUsers = () => {
     getUsers().then((res) => {
       setUsers(res.reverse());
     });
+  };
+  useEffect(() => {
+    fetchUsers();
   }, []);
+  console.log(users);
   return (
     <div className="mt-4">
       <div className="mb-5 flex justify-between font-medium text-gray-700 md:pr-20">
@@ -29,7 +34,7 @@ export default function SettingsPage() {
         </div>
         {isOpen && (
           <div className="flex w-2/5 justify-center pt-10">
-            <UserForm />
+            <UserForm onFetchUsers={fetchUsers} />
           </div>
         )}
       </div>

@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import SpecialistTable from "../components/patients/specialistTable";
-import SpecialistForm from "../components/forms/specialistForm";
 import { getRadiologyPatient } from "../components/api";
 
 export default function SpecialistPage() {

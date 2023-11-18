@@ -11,6 +11,7 @@ export interface patientDto {
   image: string;
   desc?: string;
   comment?: string;
+  createdAt?: string;
 }
 export interface addPatientDto {
   _id?: string;
@@ -36,4 +37,5 @@ export interface userDto {
   email: string;
   password: string;
   role: Role;
+  createdAt?: string;
 }

@@ -14,7 +14,7 @@ export default function RadiologistPage() {
   };
   useEffect(() => {
     getPatient();
-  });
+  }, []);
   return (
     <div className="mt-4">
       <div className="mb-5 flex justify-between font-medium text-gray-700 md:pr-20">

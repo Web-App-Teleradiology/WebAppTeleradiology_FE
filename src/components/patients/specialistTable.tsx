@@ -85,7 +85,9 @@ export default function SpecialistTable({
                     </td>
 
                     <td className="border-b border-gray-200 p-5 text-sm">
-                      <p className="whitespace-nowrap">12 dec 2018</p>
+                      <p className="whitespace-nowrap">
+                        1{patient.createdAt?.slice(0, 10)}
+                      </p>
                     </td>
                     <td className="border-b border-gray-200 p-5 text-sm">
                       <span className="relative inline-block px-3 py-1 font-semibold leading-tight">

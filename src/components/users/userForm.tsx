@@ -3,7 +3,7 @@ import { postUser } from "../api";
 import { Role } from "../../types/enum";
 import { ToastContainer, toast } from "react-toastify";
 
-const UserForm = () => {
+const UserForm = ({ onFetchUsers }: { onFetchUsers: () => void }) => {
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -35,6 +35,7 @@ const UserForm = () => {
         toast("User added successfully", {
           type: "success",
         });
+        onFetchUsers();
         return res;
       })
       .catch((error) => {

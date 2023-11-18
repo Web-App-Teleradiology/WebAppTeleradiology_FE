@@ -19,7 +19,7 @@ const SpecialistPatientDetailPage = () => {
   useEffect(() => {
     updatePatientDetail();
   });
-
+  console.log(patient);
   return (
     <div>
       <div className="mb-5 flex justify-between font-medium text-gray-700 md:pr-20">

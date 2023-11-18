@@ -63,7 +63,9 @@ export default function UserTable({ users }: { users: userDto[] }) {
                     </td>
 
                     <td className="border-b border-gray-200 p-5 text-sm">
-                      <p className="whitespace-nowrap">12 dec 2018</p>
+                      <p className="whitespace-nowrap">
+                        {user.createdAt?.slice(0, 10)}
+                      </p>
                     </td>
 
                     <td className="flex gap-4 border-b border-gray-200 p-6 text-sm">
