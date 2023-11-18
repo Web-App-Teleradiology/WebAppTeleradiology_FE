@@ -3,24 +3,20 @@ import { getPatient } from "../components/api";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SpecialistForm from "../components/forms/specialistForm";
-// import { useAuth } from "../middleware/Contexts";
 
-const PatientDetailPage = () => {
-  // const { authUser } = useAuth();
+const SpecialistPatientDetailPage = () => {
   const param = useParams();
   const { id } = param;
-  // let role: string;
   const [patient, setPatient] = useState({});
   const [isOpen, setIsOpen] = useState(false);
-  // {
-  //   authUser !== null && (role = JSON.parse(authUser).role);
-  // }
+
   useEffect(() => {
     if (id)
       getPatient(id).then((res) => {
         setPatient(res);
       });
   }, [id]);
+
   return (
     <div>
       <div className="mb-5 flex justify-between font-medium text-gray-700 md:pr-20">
@@ -30,7 +26,7 @@ const PatientDetailPage = () => {
           onClick={() => setIsOpen((prev) => !prev)}
           className="rounded-md bg-gray-200 p-3 text-black/90 hover:shadow-md"
         >
-          {isOpen ? "Close form" : "Add patient"}
+          {isOpen ? "Close form" : "+Comment"}
         </button>
       </div>
       <div className="flex flex-wrap">
@@ -47,4 +43,4 @@ const PatientDetailPage = () => {
   );
 };
 
-export default PatientDetailPage;
+export default SpecialistPatientDetailPage;

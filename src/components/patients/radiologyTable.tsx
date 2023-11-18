@@ -1,6 +1,24 @@
 import { Link } from "react-router-dom";
+import { patientDto } from "../../types/interface";
+import { Status } from "../../types/enum";
 
-export default function RadiologyTable({ patients }: any) {
+export default function RadiologyTable({
+  patients,
+}: {
+  patients: patientDto[];
+}) {
+  function getStatusColor(status: Status) {
+    switch (status) {
+      case Status.Completed:
+        return "green";
+      case Status.Pending:
+        return "black";
+      case Status.Inprogress:
+        return "orange";
+      default:
+        return "gray";
+    }
+  }
   return (
     <div className="container mt-10 border">
       <div className="py-8">
@@ -49,7 +67,7 @@ export default function RadiologyTable({ patients }: any) {
                 </tr>
               </thead>
               <tbody className="text-black">
-                {patients.map((patient: any) => (
+                {patients.map((patient: patientDto) => (
                   <tr key={patient._id} className="cursor-pointer">
                     <td className="border-b border-gray-200 p-5 text-sm">
                       <div className="flex items-center">
@@ -66,7 +84,6 @@ export default function RadiologyTable({ patients }: any) {
                     <td className="border-b border-gray-200 p-5 text-sm">
                       <p className="whitespace-nowrap">{patient.age}</p>
                     </td>
-
                     <td className="border-b border-gray-200 p-5 text-sm">
                       <p className="whitespace-nowrap">12 dec 2018</p>
                     </td>
@@ -74,9 +91,14 @@ export default function RadiologyTable({ patients }: any) {
                       <span className="relative inline-block px-3 py-1 font-semibold leading-tight">
                         <span
                           aria-hidden="true"
-                          className="absolute inset-0 rounded-full bg-green-200 opacity-50"
+                          className="absolute inset-0 rounded-full opacity-50"
+                          style={{
+                            backgroundColor: getStatusColor(patient.status),
+                          }}
                         />
-                        <span className="relative">active</span>
+                        <span className="relative pb-3 text-gray-100">
+                          {patient.status}
+                        </span>
                       </span>
                     </td>
                     <td className="flex gap-4 border-b border-gray-200 p-6 text-sm">
@@ -86,12 +108,6 @@ export default function RadiologyTable({ patients }: any) {
                       >
                         View
                       </Link>
-                      <a
-                        href="#"
-                        className="text-indigo-600 hover:text-indigo-900"
-                      >
-                        Update
-                      </a>
                     </td>
                   </tr>
                 ))}

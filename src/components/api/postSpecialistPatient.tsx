@@ -7,8 +7,6 @@ export const postSpecialistPatient = async (
   id: string,
   formData: specialistDto
 ) => {
-  console.log(getAuthToken());
-  console.log(id, formData);
   try {
     const response = await axios.patch(
       `${Link.Api}/radiology/specialist/${id}`,
@@ -17,7 +15,7 @@ export const postSpecialistPatient = async (
         headers: { Authorization: `Bearer ${getAuthToken()}` },
       }
     );
-    console.log("response", response);
+
     return response.data;
   } catch (error) {
     throw error;

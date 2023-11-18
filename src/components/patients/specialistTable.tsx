@@ -1,6 +1,23 @@
 import { Link } from "react-router-dom";
-
-export default function SpecialistTable({ patients }: any) {
+import { patientDto } from "../../types/interface";
+import { Status } from "../../types/enum";
+export default function SpecialistTable({
+  patients,
+}: {
+  patients: patientDto[];
+}) {
+  function getStatusColor(status: Status) {
+    switch (status) {
+      case Status.Completed:
+        return "green";
+      case Status.Pending:
+        return "black";
+      case Status.Inprogress:
+        return "orange";
+      default:
+        return "gray";
+    }
+  }
   return (
     <div className="container mt-10 border">
       <div className="py-8">
@@ -49,7 +66,7 @@ export default function SpecialistTable({ patients }: any) {
                 </tr>
               </thead>
               <tbody className="text-black">
-                {patients.map((patient: any) => (
+                {patients.map((patient) => (
                   <tr key={patient._id} className="cursor-pointer">
                     <td className="border-b border-gray-200 p-5 text-sm">
                       <div className="flex items-center">
@@ -74,9 +91,12 @@ export default function SpecialistTable({ patients }: any) {
                       <span className="relative inline-block px-3 py-1 font-semibold leading-tight">
                         <span
                           aria-hidden="true"
-                          className="absolute inset-0 rounded-full bg-green-200 opacity-50"
+                          className="absolute inset-0 rounded-full opacity-50"
+                          style={{
+                            backgroundColor: getStatusColor(patient.status),
+                          }}
                         />
-                        <span className="relative">active</span>
+                        <span className="relative">{patient.status}</span>
                       </span>
                     </td>
                     <td className="flex gap-4 border-b border-gray-200 p-6 text-sm">
@@ -85,12 +105,6 @@ export default function SpecialistTable({ patients }: any) {
                         className="text-green-600 hover:text-green-900"
                       >
                         View
-                      </Link>
-                      <Link
-                        to="#"
-                        className="text-indigo-600 hover:text-indigo-900"
-                      >
-                        Update
                       </Link>
                     </td>
                   </tr>

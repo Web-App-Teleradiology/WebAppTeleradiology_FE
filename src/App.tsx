@@ -13,9 +13,11 @@ import SpecialistPage from "./pages/specialistPage";
 import DashboardLayout from "./dashboard/Layout";
 import ErrorPage from "./pages/errorPage";
 import HomePage from "./pages/homePage";
-import PatientDetailPage from "./pages/patientDetailPage";
+import SpecialistPatientDetailPage from "./pages/specialistPatientDetailPage";
+
 import { useAuth } from "./middleware/Contexts";
 import "react-toastify/ReactToastify.min.css";
+import RadiologyPatientDetailPage from "./pages/radiologyPatientDetailPage";
 
 function App() {
   const { authToken } = useAuth();
@@ -27,11 +29,17 @@ function App() {
           <Route element={<DashboardLayout />} errorElement={<ErrorPage />}>
             <Route path="/" element={<HomePage />} />
             <Route path="radiologist" element={<RadiologistPage />} />
-            <Route path="radiologist/:id" element={<PatientDetailPage />} />
+            <Route
+              path="radiologist/:id"
+              element={<RadiologyPatientDetailPage />}
+            />
             <Route path="reports" element={<ReportsPage />} />
             <Route path="Settings" element={<SettingsPage />} />
             <Route path="specialist" element={<SpecialistPage />} />
-            <Route path="specialist/:id" element={<PatientDetailPage />} />
+            <Route
+              path="specialist/:id"
+              element={<SpecialistPatientDetailPage />}
+            />
             <Route path="*" element={<ErrorPage />} />
           </Route>
         ) : (

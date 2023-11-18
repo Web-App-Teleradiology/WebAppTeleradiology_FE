@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { postRadiologyPatient } from "../api";
+import { ToastContainer, toast } from "react-toastify";
 
 const RadiologyForm = () => {
   const [formData, setFormData] = useState({
@@ -13,7 +14,6 @@ const RadiologyForm = () => {
     desc: "",
     comment: "",
   });
-  const [errorMessage, setErrorMessage] = useState<[string]>([""]);
 
   const handleChangeTextarea = (
     event: React.ChangeEvent<HTMLTextAreaElement>
@@ -32,14 +32,24 @@ const RadiologyForm = () => {
       };
     });
   };
+
   const submitForm = () => {
     postRadiologyPatient(formData)
       .then((res) => {
         if (!res) throw new Error("You can not add patient");
+        toast("Patient added successfully", {
+          type: "success",
+          position: "top-center",
+          hideProgressBar: true,
+        });
         return res;
       })
       .catch((error) => {
-        setErrorMessage(error.response.data.message);
+        toast(error.response.data.message, {
+          type: "error",
+          position: "top-center",
+          hideProgressBar: true,
+        });
       })
       .finally(() =>
         setFormData({
@@ -64,13 +74,18 @@ const RadiologyForm = () => {
   };
   return (
     <div>
-      {errorMessage.length && <p className="text-red-400">{errorMessage}</p>}
+      <ToastContainer
+        position="top-center"
+        hideProgressBar={true}
+        newestOnTop
+      />
       <form className="block gap-4">
         <div className="block">
           <label htmlFor="myfile">Select an image file:</label>
           <input
             type="file"
             value={formData.image}
+            multiple
             onChange={handleChange}
             title="Choose a video please"
             name="image"
@@ -146,16 +161,7 @@ const RadiologyForm = () => {
             className={style.input}
           />
         </div>
-        {/* <div>
-          <input
-            type="text"
-            value={formData.comment}
-            onChange={handleChange}
-            placeholder="Comment"
-            name="comment"
-            className={style.input}
-          />
-        </div> */}
+
         <button type="button" onClick={submitForm} className={style.button}>
           Add patient
         </button>

@@ -1,4 +1,3 @@
-import { DocIcon } from "./icons/DocIcon";
 import { HomeIcon } from "./icons/HomeIcon";
 import { TaskIcon } from "./icons/TaskIcon";
 import { ReportIcon } from "./icons/ReportIcon";

@@ -25,13 +25,16 @@ const SpecialistForm = ({ id }: { id?: string }) => {
       [event.target.name]: event.target.value,
     }));
   };
+
   const submitForm = () => {
     if (id)
-      postSpecialistPatient(id + 1, formData)
+      postSpecialistPatient(id, formData)
         .then((res) => {
           if (!res) throw new Error("You can not add patient comment");
           toast("comment added successfully", {
             type: "success",
+            position: "top-center",
+            hideProgressBar: true,
           });
           return res;
         })
@@ -56,7 +59,11 @@ const SpecialistForm = ({ id }: { id?: string }) => {
   };
   return (
     <div className="w-4/5">
-      <ToastContainer position="top-right" newestOnTop />
+      <ToastContainer
+        position="top-center"
+        hideProgressBar={true}
+        newestOnTop
+      />
       <form>
         <select
           name="status"

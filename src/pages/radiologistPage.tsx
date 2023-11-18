@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
+import { patientDto } from "../types/interface";
 import RadiologyTable from "../components/patients/radiologyTable";
 import RadiologyForm from "../components/forms/radiologyForm";
 import { getRadiologyPatient } from "../components/api";
 
 export default function RadiologistPage() {
-  const [patients, setPatients] = useState([]);
+  const [patients, setPatients] = useState<patientDto[]>([]);
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
     getRadiologyPatient().then((res) => {
