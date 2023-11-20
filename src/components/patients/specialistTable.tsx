@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { patientDto } from "../../types/interface";
 import { Status } from "../../types/enum";
+import { capitalizeSting } from "../../utils/helper";
+
 export default function SpecialistTable({
   patients,
 }: {
@@ -97,7 +99,9 @@ export default function SpecialistTable({
                             patient.status
                           )}`}
                         />
-                        <span className="relative">{patient.status}</span>
+                        <span className="relative">
+                          {capitalizeSting(patient.status)}
+                        </span>
                       </span>
                     </td>
                     <td className="flex gap-4 border-b border-gray-200 p-6 text-sm">

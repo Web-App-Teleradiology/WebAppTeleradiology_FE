@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import { userDto } from "../../types/interface";
+import { capitalizeSting } from "../../utils/helper";
+
 export default function UserTable({ users }: { users: userDto[] }) {
   return (
     <div className="container mt-10 border">
@@ -59,7 +61,9 @@ export default function UserTable({ users }: { users: userDto[] }) {
                       <p className="whitespace-nowrap">{user.email}</p>
                     </td>
                     <td className="border-b border-gray-200 p-5 text-sm">
-                      <p className="whitespace-nowrap">{user.role}</p>
+                      <p className="whitespace-nowrap">
+                        {capitalizeSting(user?.role)}
+                      </p>
                     </td>
 
                     <td className="border-b border-gray-200 p-5 text-sm">

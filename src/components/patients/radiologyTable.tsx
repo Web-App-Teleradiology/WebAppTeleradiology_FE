@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { patientDto } from "../../types/interface";
 import { Status } from "../../types/enum";
+import { capitalizeSting } from "../../utils/helper";
 
 export default function RadiologyTable({
   patients,
@@ -98,7 +99,7 @@ export default function RadiologyTable({
                           )}`}
                         />
                         <span className="relative pb-3 text-black">
-                          {patient.status}
+                          {capitalizeSting(patient.status)}
                         </span>
                       </span>
                     </td>
