@@ -39,8 +39,6 @@ const SpecialistForm = ({
           if (!res) throw new Error("You can not add patient comment");
           toast("comment added successfully", {
             type: "success",
-            position: "top-center",
-            hideProgressBar: true,
           });
           onUpdatePatient();
           return res;
