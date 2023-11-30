@@ -26,8 +26,8 @@ export interface addPatientDto {
   comment?: string;
 }
 export interface specialistDto {
-  status: Status;
-  comment: string;
+  status?: Status;
+  comment?: string;
 }
 
 export interface userDto {

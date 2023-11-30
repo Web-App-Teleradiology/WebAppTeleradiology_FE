@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { postRadiologyPatient } from "../api";
 import { ToastContainer, toast } from "react-toastify";
+import { useAuth } from "../../middleware/Contexts";
+import axios from "axios";
 
 const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
+  const { authUser } = useAuth();
+  let loggedInUserId: string;
+  {
+    authUser !== null && (loggedInUserId = JSON.parse(authUser).id);
+  }
   const [formData, setFormData] = useState({
     patientId: "",
     image: "",
     firstName: "",
     lastName: "",
     email: "",
-    userId: "",
     age: "",
     desc: "",
     comment: "",
@@ -33,8 +39,42 @@ const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
     });
   };
 
+  const handleChangeFile = async (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    if (event.target.files && event.target.files[0]) {
+      const selectedImage = event.target.files[0];
+      try {
+        const imageUrl = await uploadImage(selectedImage);
+        setFormData((prevFormData) => ({
+          ...prevFormData,
+          image: imageUrl,
+        }));
+      } catch (error) {
+        console.error("Error uploading image:", error);
+      }
+    }
+  };
+
+  const uploadImage = async (imageFile: File): Promise<string> => {
+    const formData = new FormData();
+    formData.append("file", imageFile);
+    formData.append("upload_preset", "zxyz9eff");
+
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/karera/image/upload",
+        formData
+      );
+      return response.data.url;
+    } catch (error) {
+      throw new Error("Failed to upload image");
+    }
+  };
+
   const submitForm = () => {
-    postRadiologyPatient(formData)
+    const updatedFormData = { ...formData, userId: loggedInUserId };
+    postRadiologyPatient(updatedFormData)
       .then((res) => {
         if (!res) throw new Error("You can not add patient");
         toast("Patient added successfully", {
@@ -56,7 +96,6 @@ const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
           firstName: "",
           lastName: "",
           email: "",
-          userId: "",
           age: "",
           desc: "",
           comment: "",
@@ -82,9 +121,8 @@ const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
           <label htmlFor="myfile">Select an image file:</label>
           <input
             type="file"
-            value={formData.image}
             multiple
-            onChange={handleChange}
+            onChange={handleChangeFile}
             title="Choose a video please"
             name="image"
             className={style.input}
@@ -137,16 +175,6 @@ const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
             onChange={handleChange}
             placeholder="Age"
             name="age"
-            className={style.input}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            value={formData.userId}
-            onChange={handleChange}
-            placeholder="user Id"
-            name="userId"
             className={style.input}
           />
         </div>

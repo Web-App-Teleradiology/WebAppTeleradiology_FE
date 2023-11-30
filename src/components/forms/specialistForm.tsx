@@ -33,8 +33,12 @@ const SpecialistForm = ({
   };
 
   const submitForm = () => {
+    const specialistForm =
+      formData.status === Status.Status
+        ? { ...formData, status: undefined }
+        : formData;
     if (id)
-      postSpecialistPatient(id, formData)
+      postSpecialistPatient(id, specialistForm)
         .then((res) => {
           if (!res) throw new Error("You can not add patient comment");
           toast("comment added successfully", {
