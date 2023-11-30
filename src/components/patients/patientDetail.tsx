@@ -1,5 +1,12 @@
 import { patientDto } from "../../types/interface";
-const PatientDetail = ({ patient }: { patient?: patientDto }) => {
+
+const PatientDetail = ({
+  patient,
+  isOnViewImage,
+}: {
+  patient?: patientDto;
+  isOnViewImage: (image?: string) => void;
+}) => {
   return (
     <div className=" w-full">
       <div className="min-h-[15rem] w-full border border-gray-200 p-4">
@@ -23,7 +30,12 @@ const PatientDetail = ({ patient }: { patient?: patientDto }) => {
             </div>
           </div>
           <div className="h-[12rem]">
-            <img className="h-full" src={patient?.image} alt="patient"></img>
+            <img
+              className="h-full cursor-pointer"
+              onClick={() => isOnViewImage(patient?.image)}
+              src={patient?.image}
+              alt="patient"
+            ></img>
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { getPatient } from "../components/api";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { patientDto } from "../types/interface";
+import ImageModel from "../components/patients/imageModel";
 
 const title = "Radiology";
 
@@ -13,6 +14,12 @@ const RadiologyPatientDetailPage = () => {
   const { id } = param;
 
   const [patient, setPatient] = useState<patientDto>();
+  const [image, setImage] = useState<string>("");
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const isOnViewImage = (image?: string) => {
+    if (image) setImage(image);
+    setShowModal(true);
+  };
 
   useEffect(() => {
     if (id)
@@ -34,8 +41,11 @@ const RadiologyPatientDetailPage = () => {
         </button>
       </div>
       <div className="flex flex-wrap p-10" ref={componentRef}>
-        <PatientDetail patient={patient} />
+        <PatientDetail patient={patient} isOnViewImage={isOnViewImage} />
       </div>
+      {showModal ? (
+        <ImageModel setShowModal={setShowModal} image={image} />
+      ) : null}
     </div>
   );
 };

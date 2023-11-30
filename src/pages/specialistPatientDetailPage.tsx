@@ -6,13 +6,19 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SpecialistForm from "../components/forms/specialistForm";
 import { patientDto } from "../types/interface";
+import ImageModel from "../components/patients/imageModel";
 
 const SpecialistPatientDetailPage = () => {
   const param = useParams();
   const { id } = param;
   const [patient, setPatient] = useState<patientDto>();
   const [isOpen, setIsOpen] = useState(false);
-
+  const [image, setImage] = useState<string>("");
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const isOnViewImage = (image?: string) => {
+    if (image) setImage(image);
+    setShowModal(true);
+  };
   const updatePatientDetail = () => {
     if (id)
       getPatient(id).then((res) => {
@@ -47,13 +53,16 @@ const SpecialistPatientDetailPage = () => {
           className={`flex p-10 ${isOpen ? "w-3/5" : "w-full"}`}
           ref={componentRef}
         >
-          <PatientDetail patient={patient} />
+          <PatientDetail patient={patient} isOnViewImage={isOnViewImage} />
         </div>
         {isOpen && (
           <div className="flex w-2/5 justify-center pt-10">
             <SpecialistForm id={id} onUpdatePatient={updatePatientDetail} />
           </div>
         )}
+        {showModal ? (
+          <ImageModel setShowModal={setShowModal} image={image} />
+        ) : null}
       </div>
     </div>
   );
