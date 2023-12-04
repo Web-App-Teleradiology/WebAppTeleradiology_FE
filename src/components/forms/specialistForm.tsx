@@ -2,17 +2,20 @@ import { useState } from "react";
 import { postSpecialistPatient } from "../api";
 import { Status } from "../../types/enum";
 import { ToastContainer, toast } from "react-toastify";
+import { patientDto } from "../../types/interface";
 
 const SpecialistForm = ({
   id,
   onUpdatePatient,
+  patient,
 }: {
   id?: string;
   onUpdatePatient: () => void;
+  patient?: patientDto;
 }) => {
   const [formData, setFormData] = useState({
-    status: Status.Status,
-    comment: "",
+    status: patient?.status,
+    comment: patient?.comment,
   });
 
   const handleChangeTextarea = (

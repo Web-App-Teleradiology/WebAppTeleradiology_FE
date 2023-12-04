@@ -57,7 +57,11 @@ const SpecialistPatientDetailPage = () => {
         </div>
         {isOpen && (
           <div className="flex w-2/5 justify-center pt-10">
-            <SpecialistForm id={id} onUpdatePatient={updatePatientDetail} />
+            <SpecialistForm
+              id={id}
+              onUpdatePatient={updatePatientDetail}
+              patient={patient}
+            />
           </div>
         )}
         {showModal ? (
