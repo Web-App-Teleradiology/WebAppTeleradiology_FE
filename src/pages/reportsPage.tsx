@@ -1,10 +1,9 @@
-import { useRef } from "react";
-import { useReactToPrint } from "react-to-print";
 import { useEffect, useState } from "react";
 import { getRadiologyPatient } from "../components/api";
 import ReportTable from "../components/patients/reportTable";
 import { patientDto } from "../types/interface";
 import { capitalizeSting } from "../utils/helper";
+import { usePrint } from "../utils/print";
 
 export default function ReportsPage() {
   const [patients, setPatients] = useState<patientDto[]>([]);
@@ -23,10 +22,8 @@ export default function ReportsPage() {
     selectedValue === "" ? patient : patient?.status === selectedValue
   );
 
-  const componentRef = useRef(null);
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
+  //printing funtion
+  const { componentRef, handlePrint } = usePrint();
 
   return (
     <div className="mt-4">

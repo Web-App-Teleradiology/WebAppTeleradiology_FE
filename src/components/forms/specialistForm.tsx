@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { postSpecialistPatient } from "../api";
-import { Status } from "../../types/enum";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { patientDto } from "../../types/interface";
 
 const SpecialistForm = ({
   id,
   onUpdatePatient,
   patient,
+  setIsOpen,
 }: {
   id?: string;
   onUpdatePatient: () => void;
   patient?: patientDto;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const [formData, setFormData] = useState({
     status: patient?.status,
@@ -36,12 +37,8 @@ const SpecialistForm = ({
   };
 
   const submitForm = () => {
-    const specialistForm =
-      formData.status === Status.Status
-        ? { ...formData, status: undefined }
-        : formData;
     if (id)
-      postSpecialistPatient(id, specialistForm)
+      postSpecialistPatient(id, formData)
         .then((res) => {
           if (!res) throw new Error("You can not add patient comment");
           toast("comment added successfully", {
@@ -57,10 +54,7 @@ const SpecialistForm = ({
           });
         })
         .finally(() => {
-          setFormData({
-            status: Status.Status,
-            comment: "",
-          });
+          setIsOpen((prev) => !prev);
         });
   };
   const style = {
@@ -72,11 +66,6 @@ const SpecialistForm = ({
   };
   return (
     <div className="w-4/5">
-      <ToastContainer
-        position="top-center"
-        hideProgressBar={true}
-        newestOnTop
-      />
       <form>
         <select
           name="status"

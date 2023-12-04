@@ -4,7 +4,6 @@ import {
   Route,
   RouterProvider,
 } from "react-router-dom";
-import "./index.css";
 import LoginPage from "./pages";
 import RadiologistPage from "./pages/radiologistPage";
 import ReportsPage from "./pages/reportsPage";
@@ -18,6 +17,7 @@ import SpecialistPatientDetailPage from "./pages/specialistPatientDetailPage";
 import { useAuth } from "./middleware/Contexts";
 import "react-toastify/ReactToastify.min.css";
 import RadiologyPatientDetailPage from "./pages/radiologyPatientDetailPage";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const { authToken } = useAuth();
@@ -49,7 +49,16 @@ function App() {
       </Route>
     )
   );
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <ToastContainer
+        position="top-center"
+        hideProgressBar={true}
+        newestOnTop
+      />
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;

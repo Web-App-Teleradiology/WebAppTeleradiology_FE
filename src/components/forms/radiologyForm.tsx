@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { postRadiologyPatient } from "../api";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { useAuth } from "../../middleware/Contexts";
 import axios from "axios";
 
@@ -110,12 +110,7 @@ const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
       "my-2 w-full rounded-sm bg-black/90 py-3 font-semibold text-gray-100 hover:shadow-lg",
   };
   return (
-    <div>
-      <ToastContainer
-        position="top-center"
-        hideProgressBar={true}
-        newestOnTop
-      />
+    <>
       <form className="block gap-4">
         <div className="block">
           <label htmlFor="myfile">Select an image file:</label>
@@ -193,7 +188,7 @@ const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
           Add patient
         </button>
       </form>
-    </div>
+    </>
   );
 };
 

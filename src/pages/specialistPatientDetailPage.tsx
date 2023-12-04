@@ -1,5 +1,3 @@
-import { useRef } from "react";
-import { useReactToPrint } from "react-to-print";
 import PatientDetail from "../components/patients/patientDetail";
 import { getPatient } from "../components/api";
 import { useState, useEffect } from "react";
@@ -7,6 +5,7 @@ import { useParams } from "react-router-dom";
 import SpecialistForm from "../components/forms/specialistForm";
 import { patientDto } from "../types/interface";
 import ImageModel from "../components/patients/imageModel";
+import { usePrint } from "../utils/print";
 
 const SpecialistPatientDetailPage = () => {
   const param = useParams();
@@ -15,24 +14,28 @@ const SpecialistPatientDetailPage = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [image, setImage] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
+
+  //open and close comment model
+  const toggleModel = () => setIsOpen((prev) => !prev);
+
   const isOnViewImage = (image?: string) => {
     if (image) setImage(image);
     setShowModal(true);
   };
+
   const updatePatientDetail = () => {
     if (id)
       getPatient(id).then((res) => {
         setPatient(res);
       });
   };
+
   useEffect(() => {
     updatePatientDetail();
   });
 
-  const componentRef = useRef(null);
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
+  //printing funtion
+  const { componentRef, handlePrint } = usePrint();
 
   return (
     <div>
@@ -42,7 +45,7 @@ const SpecialistPatientDetailPage = () => {
           Print patient information!
         </button>
         <button
-          onClick={() => setIsOpen((prev) => !prev)}
+          onClick={toggleModel}
           className="rounded-md bg-gray-200 p-3 text-black/90 hover:shadow-md"
         >
           {isOpen ? "Close form" : "+Comment"}
@@ -61,6 +64,7 @@ const SpecialistPatientDetailPage = () => {
               id={id}
               onUpdatePatient={updatePatientDetail}
               patient={patient}
+              setIsOpen={setIsOpen}
             />
           </div>
         )}

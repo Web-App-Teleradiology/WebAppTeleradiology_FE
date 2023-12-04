@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { postUser } from "../api";
 import { Role } from "../../types/enum";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const UserForm = ({ onFetchUsers }: { onFetchUsers: () => void }) => {
   const [formData, setFormData] = useState({
@@ -62,71 +62,64 @@ const UserForm = ({ onFetchUsers }: { onFetchUsers: () => void }) => {
       "my-2 w-full rounded-sm bg-black/90 py-3 font-semibold text-gray-100 hover:shadow-lg",
   };
   return (
-    <>
-      <ToastContainer
-        position="top-center"
-        hideProgressBar={true}
-        newestOnTop
-      />
-      <form className="w-4/5">
-        <div>
-          <input
-            type="text"
-            value={formData.firstName}
-            onChange={handleChange}
-            placeholder="First name"
-            name="firstName"
-            className={style.input}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            value={formData.lastName}
-            onChange={handleChange}
-            placeholder="Last name"
-            name="lastName"
-            className={style.input}
-          />
-        </div>
-        <div>
-          <input
-            type="text"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Email"
-            name="email"
-            className={style.input}
-          />
-        </div>
-        <select
-          name="role"
-          value={formData.role}
-          onChange={handleChangeSelectedInput}
-          className={`${style.input} cursor-pointer`}
-        >
-          <option value="#">select role</option>
-          <option value="specialist">Specialist</option>
-          <option value="admin">Admin</option>
-          <option value="radiologist">Radiologist</option>
-        </select>
-        <div></div>
-        <div>
-          <input
-            type="password"
-            value={formData.password}
-            onChange={handleChange}
-            placeholder="Password"
-            name="password"
-            className={style.input}
-          />
-        </div>
+    <form className="w-4/5">
+      <div>
+        <input
+          type="text"
+          value={formData.firstName}
+          onChange={handleChange}
+          placeholder="First name"
+          name="firstName"
+          className={style.input}
+        />
+      </div>
+      <div>
+        <input
+          type="text"
+          value={formData.lastName}
+          onChange={handleChange}
+          placeholder="Last name"
+          name="lastName"
+          className={style.input}
+        />
+      </div>
+      <div>
+        <input
+          type="text"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Email"
+          name="email"
+          className={style.input}
+        />
+      </div>
+      <select
+        name="role"
+        value={formData.role}
+        onChange={handleChangeSelectedInput}
+        className={`${style.input} cursor-pointer`}
+      >
+        <option value="#">select role</option>
+        <option value="specialist">Specialist</option>
+        <option value="admin">Admin</option>
+        <option value="radiologist">Radiologist</option>
+      </select>
+      <div></div>
+      <div>
+        <input
+          type="password"
+          value={formData.password}
+          onChange={handleChange}
+          placeholder="Password"
+          name="password"
+          className={style.input}
+        />
+      </div>
 
-        <button type="button" onClick={submitForm} className={style.button}>
-          Add patient
-        </button>
-      </form>
-    </>
+      <button type="button" onClick={submitForm} className={style.button}>
+        Add patient
+      </button>
+    </form>
   );
 };
 

@@ -1,11 +1,10 @@
-import { useRef } from "react";
-import { useReactToPrint } from "react-to-print";
 import PatientDetail from "../components/patients/patientDetail";
 import { getPatient } from "../components/api";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { patientDto } from "../types/interface";
 import ImageModel from "../components/patients/imageModel";
+import { usePrint } from "../utils/print";
 
 const title = "Radiology";
 
@@ -28,10 +27,9 @@ const RadiologyPatientDetailPage = () => {
       });
   }, [id]);
 
-  const componentRef = useRef(null);
-  const handlePrint = useReactToPrint({
-    content: () => componentRef.current,
-  });
+  //printing funtion
+  const { componentRef, handlePrint } = usePrint();
+
   return (
     <div>
       <div className="mb-5 flex justify-between font-medium text-gray-700 md:pr-20">
