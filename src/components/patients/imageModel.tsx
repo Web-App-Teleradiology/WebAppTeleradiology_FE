@@ -1,5 +1,6 @@
+import Zoom from "react-zoom-image-hover";
 import Close from "../../dashboard/sidebar/icons/Close";
-// import Zoom from "react-img-zoom";
+
 const ImageModel = ({
   setShowModal,
   image,
@@ -14,7 +15,7 @@ const ImageModel = ({
         className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none"
       >
         <div className="relative mx-auto my-6 max-h-screen w-auto max-w-full">
-          <div className="relative flex w-full flex-col rounded-lg border-0 bg-white shadow-lg outline-none focus:outline-none">
+          <div className="relative flex w-full flex-col rounded-lg border-0 bg-transparent shadow-lg outline-none focus:outline-none">
             <div className="absolute right-0 z-10 p-5">
               <button
                 className="cursor-pointer text-black"
@@ -26,12 +27,12 @@ const ImageModel = ({
               </button>
             </div>
             <div className="relative flex-auto">
-              <img
+              <Zoom
                 src={image}
-                alt="patient"
-                // zoomScale={3}
-                // height={600}
-                // width={600}
+                height={800}
+                width={1000}
+                className="w-auto"
+                zoomScale={4}
               />
             </div>
           </div>

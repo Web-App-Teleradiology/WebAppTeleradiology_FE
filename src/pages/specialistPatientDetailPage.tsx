@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import SpecialistForm from "../components/forms/specialistForm";
 import { patientDto } from "../types/interface";
-import ImageModel from "../components/patients/imageModel";
+import ImageModel from "../components/patients/imageModel.jsx";
 import { usePrint } from "../utils/print";
 
 const SpecialistPatientDetailPage = () => {
