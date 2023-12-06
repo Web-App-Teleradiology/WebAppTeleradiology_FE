@@ -117,7 +117,7 @@ const UserForm = ({ onFetchUsers }: { onFetchUsers: () => void }) => {
       </div>
 
       <button type="button" onClick={submitForm} className={style.button}>
-        Add patient
+        Add user
       </button>
     </form>
   );

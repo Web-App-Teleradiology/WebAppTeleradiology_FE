@@ -73,11 +73,8 @@ export default function UserTable({ users }: { users: userDto[] }) {
                     </td>
 
                     <td className="flex gap-4 border-b border-gray-200 p-6 text-sm">
-                      <Link
-                        to="#"
-                        className="text-green-600 hover:text-green-900"
-                      >
-                        View
+                      <Link to="#" className="text-red-600 hover:text-red-900">
+                        Stop
                       </Link>
                     </td>
                   </tr>
