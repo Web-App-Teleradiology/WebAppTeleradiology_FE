@@ -116,7 +116,6 @@ const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
           <label htmlFor="myfile">Select an image file:</label>
           <input
             type="file"
-            value={formData.image}
             multiple
             onChange={handleChangeFile}
             title="Choose a video please"
