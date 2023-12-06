@@ -1,18 +1,17 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { HomeIcon } from "./icons/HomeIcon";
 import { data } from "./data";
 import { useAuth } from "../../middleware/Contexts";
 
 const style = {
   title: "font-normal mx-4 text-sm",
-  active: "text-black font-medium",
-  inactive: "text-gray-600",
-  link: "flex font-thin items-center justify-start my-2 p-4 w-full",
+  active: "flex gap-4 py-4 items-center font-semibold",
+  inactive: "text-gray-600 flex gap-4 py-4 items-center",
+  link: "flex items-center justify-start my-2 p-4 w-full",
 };
 
 export function SidebarItems() {
   const { logout, authUser } = useAuth();
-  const { pathname } = useLocation();
 
   //getting role from auth user
   let role: string;
@@ -30,18 +29,18 @@ export function SidebarItems() {
   return (
     <div>
       {items.map(({ section, content }) => (
-        <ul className="border-b py-2 last:border-none" key={section}>
+        <ul className="py-4" key={section}>
           {content.map((item) => (
-            <li key={item.title}>
-              <Link to={item.link}>
-                <span
-                  className={`${style.link} 
-                    ${item.link === pathname ? style.active : style.inactive}`}
-                >
-                  <span>{item.icon}</span>
-                  <span className={style.title}>{item.title}</span>
-                </span>
-              </Link>
+            <li key={item.title} className="mx-4 font-medium">
+              <NavLink
+                to={item.link}
+                className={({ isActive }) =>
+                  isActive ? `${style.active}` : `${style.inactive}`
+                }
+              >
+                <span>{item.icon}</span>
+                <span>{item.title}</span>
+              </NavLink>
             </li>
           ))}
           <li>

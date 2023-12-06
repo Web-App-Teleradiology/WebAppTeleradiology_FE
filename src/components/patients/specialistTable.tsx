@@ -21,7 +21,7 @@ export default function SpecialistTable({
     }
   }
   return (
-    <div className="container mt-10 border">
+    <div className="container border">
       <div className="py-8">
         <div className="py-4">
           <div className="max-w-full overflow-x-auto rounded-lg">

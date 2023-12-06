@@ -1,4 +1,5 @@
 import Close from "../../dashboard/sidebar/icons/Close";
+// import Zoom from "react-img-zoom";
 const ImageModel = ({
   setShowModal,
   image,
@@ -25,7 +26,13 @@ const ImageModel = ({
               </button>
             </div>
             <div className="relative flex-auto">
-              <img src={image} alt="patient" />
+              <img
+                src={image}
+                alt="patient"
+                // zoomScale={3}
+                // height={600}
+                // width={600}
+              />
             </div>
           </div>
         </div>

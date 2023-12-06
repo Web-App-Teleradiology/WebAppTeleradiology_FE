@@ -45,8 +45,8 @@ export default function ReportsPage() {
         </select>
       </div>
       <div ref={componentRef}>
-        <div className="w-full p-10">
-          <p className="text-center text-lg font-semibold">
+        <div className="w-full px-10 pb-10">
+          <p className="py-6 text-center text-lg font-semibold">
             {selectedValue == ""
               ? "All Patients"
               : `${capitalizeSting(selectedValue)} Patients`}
