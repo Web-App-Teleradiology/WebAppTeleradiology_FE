@@ -18,6 +18,7 @@ export default function RadiologistPage() {
     });
   };
   useEffect(() => {
+    search.length > 0 && setCurrentPage(1);
     getPatient(search, currentPage);
   }, [search, currentPage]);
   const handlePageChange = (page: number) => {
@@ -32,8 +33,8 @@ export default function RadiologistPage() {
           name="search"
           id="search"
           onChange={(event) => setSearch(event.target.value)}
-          placeholder="Search patient ..."
-          className="my-1 w-1/2 rounded-lg border border-gray-200 px-2 py-3 outline-gray-400 placeholder:text-slate-600"
+          placeholder="search patient ..."
+          className="my-1 w-1/2 rounded-lg border border-gray-200 px-2 py-3 font-normal outline-gray-400 placeholder:font-normal placeholder:text-slate-600"
         />
         <button
           onClick={() => setIsOpen((prev) => !prev)}
