@@ -7,18 +7,34 @@ import { getRadiologyPatient } from "../components/api";
 export default function RadiologistPage() {
   const [patients, setPatients] = useState<patientDto[]>([]);
   const [isOpen, setIsOpen] = useState(false);
-  const getPatient = () => {
-    getRadiologyPatient().then((res) => {
-      setPatients(res.reverse());
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [search, setSearch] = useState("");
+
+  const getPatient = (keyword = "", page = 1) => {
+    getRadiologyPatient(keyword, page).then((res) => {
+      setPatients(res);
+      setTotalPages(res.totalPages);
     });
   };
   useEffect(() => {
-    getPatient();
-  }, []);
+    getPatient(search, currentPage);
+  }, [search, currentPage]);
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
   return (
     <div className="mt-4">
-      <div className="mb-5 flex justify-between font-medium text-gray-700 md:pr-20">
+      <div className="mb-5 flex items-center justify-between font-medium text-gray-700 md:pr-20">
         <p className="text-2xl">Radiology</p>
+        <input
+          type="text"
+          name="search"
+          id="search"
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder="Search patient ..."
+          className="my-1 w-1/2 rounded-lg border border-gray-200 px-2 py-3 outline-gray-400 placeholder:text-slate-600"
+        />
         <button
           onClick={() => setIsOpen((prev) => !prev)}
           className="rounded-md bg-gray-200 p-2 text-black/90 hover:shadow-md"
@@ -28,11 +44,16 @@ export default function RadiologistPage() {
       </div>
       <div className="flex">
         <div className={`flex ${isOpen ? "w-3/5" : "w-full"}`}>
-          <RadiologyTable patients={patients} />
+          <RadiologyTable
+            patients={patients}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </div>
         {isOpen && (
           <div className="flex w-2/5 justify-center pt-10">
-            <RadiologyForm onGetPatient={getPatient} />
+            <RadiologyForm onGetPatient={() => getPatient("", currentPage)} />
           </div>
         )}
       </div>
