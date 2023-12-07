@@ -18,7 +18,6 @@ export default function RadiologistPage() {
     });
   };
   useEffect(() => {
-    search.length > 0 && setCurrentPage(1);
     getPatient(search, currentPage);
   }, [search, currentPage]);
   const handlePageChange = (page: number) => {

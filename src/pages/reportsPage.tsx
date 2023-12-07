@@ -8,12 +8,23 @@ import { usePrint } from "../utils/print";
 export default function ReportsPage() {
   const [patients, setPatients] = useState<patientDto[]>([]);
   const [selectedValue, setSelectedValue] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [search, setSearch] = useState("");
 
-  useEffect(() => {
-    getRadiologyPatient().then((res) => {
-      setPatients(res.reverse());
+  const getPatient = (keyword = "", page = 1) => {
+    getRadiologyPatient(keyword, page).then((res) => {
+      setPatients(res);
+      setTotalPages(res.totalPages);
     });
-  }, []);
+  };
+  useEffect(() => {
+    getPatient(search, currentPage);
+  }, [search, currentPage]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedValue(event.target.value);
@@ -29,6 +40,14 @@ export default function ReportsPage() {
     <div className="mt-4">
       <div className="mb-5 flex justify-between font-medium text-gray-700 md:pr-20">
         <p className="text-2xl">Report</p>
+        <input
+          type="text"
+          name="search"
+          id="search"
+          onChange={(event) => setSearch(event.target.value)}
+          placeholder="search patient ..."
+          className="my-1 w-1/2 rounded-lg border border-gray-200 px-2 py-3 font-normal outline-gray-400 placeholder:font-normal placeholder:text-slate-600"
+        />
         <button onClick={handlePrint} className="text-green-600">
           Print patient list!
         </button>
@@ -51,7 +70,12 @@ export default function ReportsPage() {
               ? "All Patients"
               : `${capitalizeSting(selectedValue)} Patients`}
           </p>
-          <ReportTable patients={selectedPatient} />
+          <ReportTable
+            patients={selectedPatient}
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
         </div>
       </div>
     </div>
