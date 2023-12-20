@@ -4,7 +4,13 @@ import { toast } from "react-toastify";
 import { useAuth } from "../../middleware/Contexts";
 import axios from "axios";
 
-const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
+const RadiologyForm = ({
+  onGetPatient,
+  setIsOpen,
+}: {
+  onGetPatient: () => void;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const { authUser } = useAuth();
   let loggedInUserId: string;
   {
@@ -89,7 +95,7 @@ const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
           type: "error",
         });
       })
-      .finally(() =>
+      .finally(() => {
         setFormData({
           patientId: "",
           image: "",
@@ -99,8 +105,9 @@ const RadiologyForm = ({ onGetPatient }: { onGetPatient: () => void }) => {
           age: "",
           desc: "",
           comment: "",
-        })
-      );
+        });
+        setIsOpen((prev) => !prev);
+      });
   };
   const style = {
     input:

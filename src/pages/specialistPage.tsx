@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import SpecialistTable from "../components/patients/specialistTable";
 import { getRadiologyPatient } from "../components/api";
-
+const title = "Specialist";
 export default function SpecialistPage() {
   const [patients, setPatients] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,7 +24,7 @@ export default function SpecialistPage() {
   return (
     <div className="mt-4">
       <div className="mb-5 flex items-center gap-2 font-medium text-gray-700 md:gap-4 md:pr-20">
-        <p className="text-2xl">Specialist</p>
+        <p className="text-2xl">{title}</p>
         <input
           type="text"
           name="search"

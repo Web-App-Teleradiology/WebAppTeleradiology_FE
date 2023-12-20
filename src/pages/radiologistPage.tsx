@@ -11,6 +11,9 @@ export default function RadiologistPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [search, setSearch] = useState("");
 
+  //open and close comment model
+  const toggleModel = () => setIsOpen((prev) => !prev);
+
   const getPatient = (keyword = "", page = 1) => {
     getRadiologyPatient(keyword, page).then((res) => {
       setPatients(res);
@@ -36,7 +39,7 @@ export default function RadiologistPage() {
           className="my-1 w-1/2 rounded-lg border border-gray-200 px-2 py-3 font-normal outline-gray-400 placeholder:font-normal placeholder:text-slate-600"
         />
         <button
-          onClick={() => setIsOpen((prev) => !prev)}
+          onClick={toggleModel}
           className="rounded-md bg-gray-200 p-2 text-black/90 hover:shadow-md"
         >
           {isOpen ? "Close form" : "Add patient"}
@@ -53,7 +56,10 @@ export default function RadiologistPage() {
         </div>
         {isOpen && (
           <div className="flex w-2/5 justify-center pt-10">
-            <RadiologyForm onGetPatient={() => getPatient("", currentPage)} />
+            <RadiologyForm
+              onGetPatient={() => getPatient("", currentPage)}
+              setIsOpen={setIsOpen}
+            />
           </div>
         )}
       </div>

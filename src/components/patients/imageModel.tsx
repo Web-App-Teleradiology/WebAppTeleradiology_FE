@@ -34,6 +34,7 @@ const ImageModel = ({
                 className="w-auto"
                 zoomScale={4}
               />
+              {/* <img src={image} alt="may" className="w-1/2 h-1/2" /> */}
             </div>
           </div>
         </div>

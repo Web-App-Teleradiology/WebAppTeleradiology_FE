@@ -94,7 +94,7 @@ export default function SpecialistTable({
 
                     <td className="border-b border-gray-200 p-5 text-sm">
                       <p className="whitespace-nowrap">
-                        1{patient.createdAt?.slice(0, 10)}
+                        {patient.createdAt?.slice(0, 10)}
                       </p>
                     </td>
                     <td className="border-b border-gray-200 p-5 text-sm">

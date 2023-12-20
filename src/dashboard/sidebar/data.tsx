@@ -1,8 +1,8 @@
 import { HomeIcon } from "./icons/HomeIcon";
-import { TaskIcon } from "./icons/TaskIcon";
 import { ReportIcon } from "./icons/ReportIcon";
-import { ProjectIcon } from "./icons/ProjectIcon";
 import { SettingsIcon } from "./icons/SettingsIcon";
+import { Sicon } from "./icons/Sicon";
+import { Ricon } from "./icons/Ricon";
 
 export const data = [
   {
@@ -15,14 +15,14 @@ export const data = [
         role: ["admin", "specialist", "radiologist"],
       },
       {
-        title: "Radiologist",
-        icon: <ProjectIcon />,
+        title: "Patients",
+        icon: <Ricon />,
         link: "radiologist",
         role: ["admin", "radiologist"],
       },
       {
-        title: "Specialist",
-        icon: <TaskIcon />,
+        title: "Patients",
+        icon: <Sicon />,
         link: "specialist",
         role: ["admin", "specialist"],
       },

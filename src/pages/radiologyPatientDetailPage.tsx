@@ -1,14 +1,17 @@
 import PatientDetail from "../components/patients/patientDetail";
 import { getPatient } from "../components/api";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { patientDto } from "../types/interface";
 import ImageModel from "../components/patients/imageModel";
 import { usePrint } from "../utils/print";
+import { BackIcon } from "../../public/images/BackIcon";
 
 const title = "Radiology";
 
 const RadiologyPatientDetailPage = () => {
+  const navigate = useNavigate();
+  const goBack = () => navigate(-1);
   const param = useParams();
   const { id } = param;
 
@@ -33,7 +36,12 @@ const RadiologyPatientDetailPage = () => {
   return (
     <div>
       <div className="mb-5 flex justify-between font-medium text-gray-700 md:pr-20">
-        <p className="text-2xl md:pl-10">{title}</p>
+        <div className="flex items-center text-2xl">
+          <span className="cursor-pointer">
+            <BackIcon onClick={goBack} />
+          </span>
+          <p>{title}</p>
+        </div>
         <button onClick={handlePrint} className="text-green-600">
           Print patient information!
         </button>
