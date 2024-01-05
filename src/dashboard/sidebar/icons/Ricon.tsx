@@ -14,7 +14,7 @@ export const Ricon = () => {
         preserveAspectRatio="xMidYMid meet"
         fill="currentColor"
       >
-        <g id="SVGRepo_bgCarrier" stroke-width="0">
+        <g id="SVGRepo_bgCarrier" strokeWidth="0">
           <rect
             x="-7.92"
             y="-7.92"
@@ -28,8 +28,8 @@ export const Ricon = () => {
 
         <g
           id="SVGRepo_tracerCarrier"
-          stroke-linecap="round"
-          stroke-linejoin="round"
+          strokeLinecap="round"
+          strokeLinejoin="round"
         />
 
         <g id="SVGRepo_iconCarrier">

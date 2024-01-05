@@ -39,7 +39,7 @@ export default function ReportsPage() {
   return (
     <div className="mt-4">
       <div className="mb-5 flex justify-between font-medium text-gray-700 md:pr-20">
-        <p className="text-2xl">Report</p>
+        <p className="text-2xl">List of patients</p>
         <input
           type="text"
           name="search"

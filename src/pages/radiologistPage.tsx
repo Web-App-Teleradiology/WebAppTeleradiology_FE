@@ -29,7 +29,7 @@ export default function RadiologistPage() {
   return (
     <div className="mt-4">
       <div className="mb-5 flex items-center justify-between font-medium text-gray-700 md:pr-20">
-        <p className="text-2xl">Radiology</p>
+        <p className="text-2xl">Patients</p>
         <input
           type="text"
           name="search"

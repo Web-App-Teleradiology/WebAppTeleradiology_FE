@@ -1,38 +1,20 @@
 [
   {
     "key": 1,
-    "title": "Users",
+    "title": "Radiologist",
     "content": "Manage user information",
-    "link": "/users"
+    "link": "/radiologist"
   },
   {
     "key": 2,
-    "title": "Users",
+    "title": "Specialist",
     "content": "Manage user information",
-    "link": "/users"
+    "link": "/specialist"
   },
   {
     "key": 3,
-    "title": "Users",
+    "title": "Patient",
     "content": "Manage user information",
-    "link": "/users"
-  },
-  {
-    "key": 4,
-    "title": "Users",
-    "content": "Manage user information",
-    "link": "/users"
-  },
-  {
-    "key": 5,
-    "title": "Users",
-    "content": "Manage user information",
-    "link": "/users"
-  },
-  {
-    "key": 6,
-    "title": "Users",
-    "content": "Manage user information",
-    "link": "/users"
+    "link": "/reports"
   }
 ]

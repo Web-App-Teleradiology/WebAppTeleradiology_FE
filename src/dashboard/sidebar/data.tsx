@@ -9,18 +9,21 @@ export const data = [
     section: "Section1",
     content: [
       {
+        id: 1,
         title: "Dashboard",
         icon: <HomeIcon />,
         link: ".",
         role: ["admin", "specialist", "radiologist"],
       },
       {
+        id: 2,
         title: "Patients",
         icon: <Ricon />,
         link: "radiologist",
         role: ["admin", "radiologist"],
       },
       {
+        id: 3,
         title: "Patients",
         icon: <Sicon />,
         link: "specialist",
@@ -28,12 +31,14 @@ export const data = [
       },
 
       {
-        title: "Reports",
+        id: 4,
+        title: "List of Patients",
         icon: <ReportIcon />,
         link: "reports",
         role: ["admin", "specialist", "radiologist"],
       },
       {
+        id: 5,
         title: "Settings",
         icon: <SettingsIcon />,
         link: "settings",

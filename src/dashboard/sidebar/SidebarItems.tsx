@@ -1,11 +1,11 @@
 import { Link, NavLink } from "react-router-dom";
-import { HomeIcon } from "./icons/HomeIcon";
 import { data } from "./data";
 import { useAuth } from "../../middleware/Contexts";
+import { Logout } from "../../../public/images/Logout";
 
 const style = {
   title: "font-normal mx-4 text-sm",
-  active: "flex gap-4 py-4 items-center font-semibold",
+  active: "flex gap-4 py-4 items-center font-semibold text-lg",
   inactive: "text-gray-600 flex gap-4 py-4 items-center",
   link: "flex items-center justify-start my-2 p-4 w-full",
 };
@@ -31,7 +31,7 @@ export function SidebarItems() {
       {items.map(({ section, content }) => (
         <ul className="py-4" key={section}>
           {content.map((item) => (
-            <li key={item.title} className="mx-4 font-medium">
+            <li key={item.id} className="mx-4 font-medium">
               <NavLink
                 to={item.link}
                 className={({ isActive }) =>
@@ -46,7 +46,7 @@ export function SidebarItems() {
           <li>
             <Link to="/">
               <button className={style.link} onClick={logout}>
-                <span>{<HomeIcon />}</span>
+                <span>{<Logout />}</span>
                 <span className={style.title}>Logout</span>
               </button>
             </Link>
