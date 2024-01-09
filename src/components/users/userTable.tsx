@@ -1,8 +1,13 @@
-import { Link } from "react-router-dom";
 import { userDto } from "../../types/interface";
 import { capitalizeSting } from "../../utils/helper";
 
-export default function UserTable({ users }: { users: userDto[] }) {
+export default function UserTable({
+  users,
+  getUserId,
+}: {
+  users: userDto[];
+  getUserId: (id?: string) => void;
+}) {
   return (
     <div className="container border">
       <div className="py-8">
@@ -73,9 +78,12 @@ export default function UserTable({ users }: { users: userDto[] }) {
                     </td>
 
                     <td className="flex gap-4 border-b border-gray-200 p-6 text-sm">
-                      <Link to="#" className="text-red-600 hover:text-red-900">
-                        Stop
-                      </Link>
+                      <button
+                        onClick={() => getUserId(user._id)}
+                        className="text-red-600 hover:text-red-900"
+                      >
+                        {user.isActive === true ? "Desactivate" : "Activate"}
+                      </button>
                     </td>
                   </tr>
                 ))}
