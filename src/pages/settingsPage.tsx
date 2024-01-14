@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { userDto } from "../types/interface";
 import UserTable from "../components/users/userTable";
 import UserForm from "../components/users/userForm";
-import { getUsers } from "../components/api";
+import { getUsers, stopUser } from "../components/api";
 
 export default function SettingsPage() {
   const [users, setUsers] = useState<userDto[]>([]);
@@ -10,13 +10,19 @@ export default function SettingsPage() {
 
   const fetchUsers = () => {
     getUsers().then((res) => {
-      setUsers(res.reverse());
+      setUsers(res);
     });
   };
+
+  const stopLoginUser = async (getUserId?: string) => {
+    getUserId && (await stopUser(getUserId));
+    fetchUsers();
+  };
+
   useEffect(() => {
     fetchUsers();
   }, []);
-  console.log(users);
+
   return (
     <div className="mt-4">
       <div className="mb-5 flex justify-between font-medium text-gray-700 md:pr-20">
@@ -30,7 +36,7 @@ export default function SettingsPage() {
       </div>
       <div className="flex">
         <div className={`flex ${isOpen ? "w-3/5" : "w-full"}`}>
-          <UserTable users={users} />
+          <UserTable users={users} getUserId={stopLoginUser} />
         </div>
         {isOpen && (
           <div className="flex w-2/5 justify-center pt-10">

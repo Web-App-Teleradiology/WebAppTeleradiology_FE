@@ -37,5 +37,13 @@ export interface userDto {
   email: string;
   password: string;
   role: Role;
+  isActive: boolean;
   createdAt?: string;
+}
+export interface patientCount {
+  all: number;
+  pending: number;
+  progress: number;
+  completed: number;
+  [key: string]: number;
 }

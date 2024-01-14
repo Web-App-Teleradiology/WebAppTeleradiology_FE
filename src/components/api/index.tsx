@@ -5,6 +5,7 @@ import { getPatient } from "./getPatient";
 import { postSpecialistPatient } from "./postSpecialistPatient";
 import { getUsers } from "./getUsers";
 import { postUser } from "./postUser";
+import { stopUser } from "./stopUser";
 export {
   postRadiologyPatient,
   getRadiologyPatient,
@@ -13,4 +14,5 @@ export {
   postSpecialistPatient,
   getUsers,
   postUser,
+  stopUser,
 };
