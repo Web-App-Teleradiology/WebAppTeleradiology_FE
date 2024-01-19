@@ -1,10 +1,4 @@
-# Salvia-kit Dashboard v9 React with vite
-
-![Salvia-kit Dashboard v9](https://www.salvia-kit.com/images/dashboards/dashv9.png)
-
-## 📋 Documentation
-
-You can see the documentation on [http://localhost:3000/admin/documentation](http://localhost:3000/admin/documentation)
+# Hospital project
 
 ## Browser Support
 
