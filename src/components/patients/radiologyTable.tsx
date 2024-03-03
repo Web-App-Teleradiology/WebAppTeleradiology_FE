@@ -59,12 +59,7 @@ export default function RadiologyTable({
                   >
                     Created_at
                   </th>
-                  <th
-                    scope="col"
-                    className="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
-                  >
-                    status
-                  </th>
+
                   <th
                     scope="col"
                     className="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase text-green-900"
@@ -96,7 +91,7 @@ export default function RadiologyTable({
                         {patient.createdAt?.slice(0, 10)}
                       </p>
                     </td>
-                    <td className="border-b border-gray-200 p-5 text-sm">
+                    {/* <td className="border-b border-gray-200 p-5 text-sm">
                       <span className="relative inline-block px-3 py-1 font-semibold leading-tight">
                         <span
                           aria-hidden="true"
@@ -108,7 +103,7 @@ export default function RadiologyTable({
                           {capitalizeSting(patient.status)}
                         </span>
                       </span>
-                    </td>
+                    </td> */}
                     <td className="flex gap-4 border-b border-gray-200 p-6 text-sm">
                       <Link
                         to={`${patient._id}`}
@@ -149,11 +144,10 @@ export default function RadiologyTable({
                     key={index + 1}
                     type="button"
                     onClick={() => onPageChange(index + 1)}
-                    className={`w-full border-y bg-white px-4 py-2 text-base ${
-                      currentPage === index + 1
+                    className={`w-full border-y bg-white px-4 py-2 text-base ${currentPage === index + 1
                         ? "font-bold text-green-600 hover:bg-gray-100"
                         : "text-gray-600 hover:bg-gray-100"
-                    }`}
+                      }`}
                   >
                     {index + 1}
                   </button>
