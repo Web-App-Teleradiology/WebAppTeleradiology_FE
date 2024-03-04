@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { patientDto } from "../types/interface";
 import { getPatientHistory } from "../components/api/getPatientHistory";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import PatientTable from "../components/patients/patientTable";
 import PatientForm from "../components/forms/patientForm";
 import { useAuth } from "../middleware/Contexts";
@@ -12,6 +12,10 @@ const PatientHistory = () => {
     {
         authUser !== null && (loggedInUserRole = JSON.parse(authUser).role);
     }
+
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const name = searchParams.get('name');
     const [patients, setPatients] = useState<patientDto[]>([]);
     const [isOpen, setIsOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
@@ -39,10 +43,11 @@ const PatientHistory = () => {
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
+
     return (
         <div className="mt-4">
             <div className="mb-5 flex items-center justify-between font-medium text-gray-700 md:pr-20">
-                <p className="text-2xl">Patients'medical history</p>
+                <p className="text-2xl">{name}'s medical history</p>
                 <input
                     type="text"
                     name="search"
