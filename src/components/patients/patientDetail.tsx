@@ -9,7 +9,6 @@ const PatientDetail = ({
 
 }) => {
 
-  console.log(patient)
   return (
     <div className=" w-full">
       <div className="min-h-[15rem] w-full border border-gray-200 p-4">
