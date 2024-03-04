@@ -13,6 +13,7 @@ export interface radiologyDto {
 export interface patientDto {
   _id?: string;
   patientId: string;
+  image: string;
   userId: string;
   status: Status;
   desc?: string;

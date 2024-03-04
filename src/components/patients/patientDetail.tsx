@@ -1,12 +1,15 @@
-import { patientDto } from "../../types/interface";
+import { patientDto, radiologyDto } from "../../types/interface";
 
 const PatientDetail = ({
   patient,
   isOnViewImage,
 }: {
-  patient?: { patient: any, radiology: any };
+  patient?: { patient: patientDto, radiology: radiologyDto };
   isOnViewImage: (image?: string) => void;
+
 }) => {
+
+  console.log(patient)
   return (
     <div className=" w-full">
       <div className="min-h-[15rem] w-full border border-gray-200 p-4">
@@ -46,7 +49,7 @@ const PatientDetail = ({
       </p>
       <p className="py-2 text-lg font-semibold">Specialist explanatiom</p>
       <p className="min-h-[20rem] w-full border border-gray-200 p-4">
-        {patient?.radiology.comment}
+        {patient?.patient.comment}
       </p>
     </div>
   );
