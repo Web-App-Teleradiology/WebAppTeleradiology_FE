@@ -83,7 +83,7 @@ export default function SpecialistTable({
 
                     <td className="flex gap-4 border-b border-gray-200 p-6 text-sm">
                       <Link
-                        to={`/patient/${patient._id}`}
+                        to={`/patient/${patient._id}?name=${patient.firstName}`}
                         className="text-green-600 hover:text-green-900"
                       >
                         View
