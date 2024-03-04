@@ -1,19 +1,25 @@
 import { Role, Status } from "./enum";
-export interface patientDto {
+export interface radiologyDto {
   _id?: string;
-  patientId: string;
   firstName: string;
   lastName: string;
   email: string;
   age: string;
   userId: string;
-  status: Status;
   image: string;
+
+  createdAt?: string;
+}
+export interface patientDto {
+  _id?: string;
+  patientId: string;
+  userId: string;
+  status: Status;
   desc?: string;
   comment?: string;
   createdAt?: string;
 }
-export interface addPatientDto {
+export interface addRadiologyDto {
   _id?: string;
   firstName: string;
   lastName: string;
@@ -23,6 +29,13 @@ export interface addPatientDto {
   // image: string;
   // desc?: string;
   // comment?: string;
+}
+export interface addPatientDto {
+  _id?: string;
+  patientId: string;
+  image: string;
+  desc?: string;
+  comment?: string;
 }
 export interface specialistDto {
   status?: Status;
