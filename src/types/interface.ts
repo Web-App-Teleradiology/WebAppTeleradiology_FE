@@ -27,9 +27,6 @@ export interface addRadiologyDto {
   email: string;
   age: string;
   userId: string;
-  // image: string;
-  // desc?: string;
-  // comment?: string;
 }
 export interface addPatientDto {
   _id?: string;
