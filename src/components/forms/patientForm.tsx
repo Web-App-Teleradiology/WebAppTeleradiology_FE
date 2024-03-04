@@ -3,28 +3,31 @@ import { postPatient } from "../api";
 import { toast } from "react-toastify";
 import { useAuth } from "../../middleware/Contexts";
 import axios from "axios";
+import { useParams } from "react-router-dom";
+
+
+interface props {
+    onGetPatient: () => void;
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 
 const PatientForm = ({
     onGetPatient,
     setIsOpen,
-}: {
-    onGetPatient: () => void;
-    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-}) => {
+}: props) => {
+
     const { authUser } = useAuth();
     let loggedInUserId: string;
+
     {
         authUser !== null && (loggedInUserId = JSON.parse(authUser).id);
     }
+
+    const { id: patientId } = useParams()
     const [formData, setFormData] = useState({
-        patientId: "",
         image: "",
-        // firstName: "",
-        // lastName: "",
-        // email: "",
-        // age: "",
         desc: "",
-        comment: "",
     });
 
     const handleChangeTextarea = (
@@ -36,14 +39,7 @@ const PatientForm = ({
         }));
     };
 
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setFormData((prevFormData) => {
-            return {
-                ...prevFormData,
-                [event.target.name]: event.target.value,
-            };
-        });
-    };
+
 
     const handleChangeFile = async (
         event: React.ChangeEvent<HTMLInputElement>
@@ -79,35 +75,30 @@ const PatientForm = ({
     };
 
     const submitForm = () => {
-        const updatedFormData = { ...formData, userId: loggedInUserId };
-        postPatient(updatedFormData)
-            .then((res: any) => {
-                if (!res) throw new Error("You can not add patient");
-                toast("Patient added successfully", {
-                    type: "success",
+        if (patientId)
+            postPatient({ ...formData, userId: loggedInUserId, patientId })
+                .then((res) => {
+                    if (!res) throw new Error("You can not add patient");
+                    toast("Patient added successfully", {
+                        type: "success",
+                    });
+                    onGetPatient();
+                    setIsOpen((prev) => !prev);
+                    return res;
+                })
+                .catch((error) => {
+                    const reserror = error.response.data.message;
+                    toast(typeof reserror !== "string" ? reserror.join(",") : reserror, {
+                        type: "error",
+                    });
+                })
+                .finally(() => {
+                    setFormData({
+                        image: "",
+                        desc: ""
+                    });
                 });
-                onGetPatient();
-                setIsOpen((prev) => !prev);
-                return res;
-            })
-            .catch((error) => {
-                const reserror = error.response.data.message;
-                toast(typeof reserror !== "string" ? reserror.join(",") : reserror, {
-                    type: "error",
-                });
-            })
-            .finally(() => {
-                setFormData({
-                    patientId: "",
-                    image: "",
-                    // firstName: "",
-                    // lastName: "",
-                    // email: "",
-                    // age: "",
-                    desc: "",
-                    comment: "",
-                });
-            });
+
     };
     const style = {
         input:
@@ -127,16 +118,6 @@ const PatientForm = ({
                         onChange={handleChangeFile}
                         title="Choose a video please"
                         name="image"
-                        className={style.input}
-                    />
-                </div>
-                <div>
-                    <input
-                        type="text"
-                        value={formData.patientId}
-                        onChange={handleChange}
-                        placeholder="patient Id"
-                        name="patientId"
                         className={style.input}
                     />
                 </div>

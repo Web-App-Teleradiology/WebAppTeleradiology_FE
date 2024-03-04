@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { patientDto } from "../../types/interface";
-import { Status } from "../../types/enum";
+import { Role, Status } from "../../types/enum";
 import { capitalizeSting } from "../../utils/helper";
+import { useAuth } from "../../middleware/Contexts";
 
 export default function PatientTable({
     patients,
@@ -14,6 +15,13 @@ export default function PatientTable({
     totalPages: number;
     onPageChange: (page: number) => void;
 }) {
+
+
+    const { authUser } = useAuth();
+    let loggedInUserRole: Role;
+    {
+        authUser !== null && (loggedInUserRole = JSON.parse(authUser).role);
+    }
     function getStatusColor(status: Status) {
         switch (status) {
             case Status.Completed:
@@ -104,7 +112,7 @@ export default function PatientTable({
                                         </td>
                                         <td className="flex gap-4 border-b border-gray-200 p-6 text-sm">
                                             <Link
-                                                to={`/radiologist/${patient._id}`}
+                                                to={loggedInUserRole == Role.Admin || loggedInUserRole == Role.Specialist ? `/specialist/${patient._id}` : `/radiologist/${patient._id}`}
                                                 className="text-green-600 hover:text-green-900"
                                             >
                                                 View

@@ -1,42 +1,44 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { patientDto } from "../types/interface";
 import { getPatientHistory } from "../components/api/getPatientHistory";
 import { useParams } from "react-router-dom";
 import PatientTable from "../components/patients/patientTable";
 import PatientForm from "../components/forms/patientForm";
+import { useAuth } from "../middleware/Contexts";
+import { Role } from "../types/enum";
 const PatientHistory = () => {
-
+    const { authUser } = useAuth();
+    let loggedInUserRole;
+    {
+        authUser !== null && (loggedInUserRole = JSON.parse(authUser).role);
+    }
     const [patients, setPatients] = useState<patientDto[]>([]);
     const [isOpen, setIsOpen] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const [search, setSearch] = useState("");
-    const { id } = useParams()
+    const { id } = useParams();
     //open and close comment model
     const toggleModel = () => setIsOpen((prev) => !prev);
 
-    const getPatient = (keyword = "", page = 1) => {
-        if (id) {
+    const getPatient = useCallback((keyword = "", page = 1) => {
+        if (id)
             getPatientHistory(id, keyword, page)
                 .then((res) => {
                     setPatients(res.data);
                     setTotalPages(res.totalPages);
                 })
                 .catch((error) => {
-                    console.error('Error fetching patient data:', error);
+                    console.error("Error fetching patient data:", error);
                 });
-        } else {
-            console.error('Patient ID is not defined');
-        }
-    };
+
+    }, [id]);
     useEffect(() => {
         getPatient(search, currentPage);
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentPage, search]);
+    }, [currentPage, getPatient, search]);
     const handlePageChange = (page: number) => {
         setCurrentPage(page);
     };
-    console.log("first", patients)
     return (
         <div className="mt-4">
             <div className="mb-5 flex items-center justify-between font-medium text-gray-700 md:pr-20">
@@ -49,12 +51,12 @@ const PatientHistory = () => {
                     placeholder="search patient ..."
                     className="my-1 w-1/2 rounded-lg border border-gray-200 px-2 py-3 font-normal outline-gray-400 placeholder:font-normal placeholder:text-slate-600"
                 />
-                <button
+                {loggedInUserRole === Role.Admin || loggedInUserRole === Role.Radiologist && (<button
                     onClick={toggleModel}
                     className="rounded-md bg-gray-200 p-2 text-black/90 hover:shadow-md"
                 >
                     {isOpen ? "Close form" : "Add diagnosis"}
-                </button>
+                </button>)}
             </div>
             <div className="flex">
                 <div className={`flex ${isOpen ? "w-3/5" : "w-full"}`}>
@@ -75,7 +77,7 @@ const PatientHistory = () => {
                 )}
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default PatientHistory
+export default PatientHistory;

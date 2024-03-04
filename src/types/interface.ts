@@ -32,6 +32,7 @@ export interface addRadiologyDto {
 }
 export interface addPatientDto {
   _id?: string;
+  userId: string;
   patientId: string;
   image: string;
   desc?: string;
