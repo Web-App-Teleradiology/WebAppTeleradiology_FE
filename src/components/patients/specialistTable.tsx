@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
-import { patientDto } from "../../types/interface";
-import { Status } from "../../types/enum";
-import { capitalizeSting } from "../../utils/helper";
+import { radiologyDto } from "../../types/interface";
+
 
 export default function SpecialistTable({
   patients,
@@ -9,23 +8,12 @@ export default function SpecialistTable({
   totalPages,
   onPageChange,
 }: {
-  patients: patientDto[];
+  patients: radiologyDto[];
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
 }) {
-  function getStatusColor(status: Status) {
-    switch (status) {
-      case Status.Completed:
-        return "bg-[green]";
-      case Status.Pending:
-        return "bg-[black]";
-      case Status.Inprogress:
-        return "bg-[orange]";
-      default:
-        return "bg-gray";
-    }
-  }
+
   return (
     <div className="container border">
       <div className="py-8">
@@ -59,12 +47,7 @@ export default function SpecialistTable({
                   >
                     Created_at
                   </th>
-                  <th
-                    scope="col"
-                    className="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase"
-                  >
-                    status
-                  </th>
+
                   <th
                     scope="col"
                     className="border-b border-gray-200 px-5 py-3 text-left text-sm font-normal uppercase text-green-900"
@@ -97,22 +80,10 @@ export default function SpecialistTable({
                         {patient.createdAt?.slice(0, 10)}
                       </p>
                     </td>
-                    <td className="border-b border-gray-200 p-5 text-sm">
-                      <span className="relative inline-block px-3 py-1 font-semibold leading-tight">
-                        <span
-                          aria-hidden="true"
-                          className={`absolute inset-0 rounded-full opacity-50 ${getStatusColor(
-                            patient.status
-                          )}`}
-                        />
-                        <span className="relative">
-                          {capitalizeSting(patient.status)}
-                        </span>
-                      </span>
-                    </td>
+
                     <td className="flex gap-4 border-b border-gray-200 p-6 text-sm">
                       <Link
-                        to={`${patient._id}`}
+                        to={`/patient/${patient._id}`}
                         className="text-green-600 hover:text-green-900"
                       >
                         View
@@ -150,11 +121,10 @@ export default function SpecialistTable({
                     key={index + 1}
                     type="button"
                     onClick={() => onPageChange(index + 1)}
-                    className={`w-full border-y bg-white px-4 py-2 text-base ${
-                      currentPage === index + 1
-                        ? "text-indigo-500 hover:bg-gray-100"
-                        : "text-gray-600 hover:bg-gray-100"
-                    }`}
+                    className={`w-full border-y bg-white px-4 py-2 text-base ${currentPage === index + 1
+                      ? "text-indigo-500 hover:bg-gray-100"
+                      : "text-gray-600 hover:bg-gray-100"
+                      }`}
                   >
                     {index + 1}
                   </button>

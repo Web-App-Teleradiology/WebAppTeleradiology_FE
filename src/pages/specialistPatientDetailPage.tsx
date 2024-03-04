@@ -1,9 +1,9 @@
 import PatientDetail from "../components/patients/patientDetail";
 import { getPatient } from "../components/api";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import SpecialistForm from "../components/forms/specialistForm";
-import { patientDto } from "../types/interface";
+import { patientDto, radiologyDto } from "../types/interface";
 import ImageModel from "../components/patients/imageModel.jsx";
 import { usePrint } from "../utils/print";
 import { BackIcon } from "../utils/Icons/BackIcon.tsx";
@@ -15,7 +15,7 @@ const SpecialistPatientDetailPage = () => {
   const goBack = () => navigate(-1);
   const param = useParams();
   const { id } = param;
-  const [patient, setPatient] = useState<patientDto>();
+  const [patient, setPatient] = useState<{ patient: patientDto, radiology: radiologyDto }>();
   const [isOpen, setIsOpen] = useState(false);
   const [image, setImage] = useState<string>("");
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -28,16 +28,16 @@ const SpecialistPatientDetailPage = () => {
     setShowModal(true);
   };
 
-  const updatePatientDetail = () => {
+  const updatePatientDetail = useCallback(() => {
     if (id)
       getPatient(id).then((res) => {
         setPatient(res);
       });
-  };
+  }, [id]);
 
   useEffect(() => {
     updatePatientDetail();
-  });
+  }, [updatePatientDetail]);
 
   //printing funtion
   const { componentRef, handlePrint } = usePrint();
@@ -73,7 +73,7 @@ const SpecialistPatientDetailPage = () => {
             <SpecialistForm
               id={id}
               onUpdatePatient={updatePatientDetail}
-              patient={patient}
+              patient={patient?.patient}
               setIsOpen={setIsOpen}
             />
           </div>

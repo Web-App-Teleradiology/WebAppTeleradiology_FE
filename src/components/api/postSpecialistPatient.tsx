@@ -9,7 +9,7 @@ export const postSpecialistPatient = async (
 ) => {
   try {
     const response = await axios.patch(
-      `${Link.Api}/radiology/specialist/${id}`,
+      `${Link.Api}/patient/specialist/${id}`,
       formData,
       {
         headers: { Authorization: `Bearer ${getAuthToken()}` },

@@ -3,7 +3,7 @@ import { Link } from "../../config";
 import { getAuthToken } from "../../utils/auth";
 export const getPatientCount = async () => {
   try {
-    const response = await axios.get(`${Link.Api}/radiology/count`, {
+    const response = await axios.get(`${Link.Api}/patient/count`, {
       headers: { Authorization: `Bearer ${getAuthToken()}` },
     });
     return response.data;

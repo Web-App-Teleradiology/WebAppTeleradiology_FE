@@ -18,6 +18,7 @@ import { useAuth } from "./middleware/Contexts";
 import "react-toastify/ReactToastify.min.css";
 import RadiologyPatientDetailPage from "./pages/radiologyPatientDetailPage";
 import { ToastContainer } from "react-toastify";
+import PatientHistory from "./pages/patientHistory";
 
 function App() {
   const { authToken } = useAuth();
@@ -39,6 +40,10 @@ function App() {
             <Route
               path="specialist/:id"
               element={<SpecialistPatientDetailPage />}
+            />
+            <Route
+              path="patient/:id"
+              element={<PatientHistory />}
             />
             <Route path="*" element={<ErrorPage />} />
           </Route>

@@ -43,11 +43,11 @@ export function SidebarItems() {
               </NavLink>
             </li>
           ))}
-          <li>
+          <li className="font-semibold">
             <Link to="/">
               <button className={style.link} onClick={logout}>
                 <span>{<Logout />}</span>
-                <span className={style.title}>Logout</span>
+                <span className='mx-2 font-semibold'>Logout</span>
               </button>
             </Link>
           </li>
