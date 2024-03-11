@@ -30,6 +30,14 @@ const PatientDetail = ({
               <p className="mx-1 w-20 font-semibold">Age: </p>
               <p>{patient?.radiology.age}</p>
             </div>
+            <div className="flex items-center py-2">
+              <p className="mx-1 w-20 font-semibold">Radiologist: </p>
+              <p>{patient?.patient.userName}</p>
+            </div>
+            <div className="flex items-center py-2">
+              <p className="mx-1 w-20 font-semibold">Specialist: </p>
+              <p>{patient?.patient.specialistName}</p>
+            </div>
           </div>
           <div className="h-[12rem]">
             <img

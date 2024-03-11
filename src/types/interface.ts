@@ -17,6 +17,8 @@ export interface patientDto {
   userId: string;
   status: Status;
   desc?: string;
+  userName: string;
+  specialistName: string;
   comment?: string;
   createdAt?: string;
 }
