@@ -1,17 +1,17 @@
 [
   {
     "key": 1,
-    "title": "pending",
+    "title": "Pending",
     "percentage": 0
   },
   {
     "key": 2,
-    "title": "progress",
+    "title": "Progress",
     "percentage": 0
   },
   {
     "key": 3,
-    "title": "completed",
+    "title": "Completed",
     "percentage": 0
   }
 ]

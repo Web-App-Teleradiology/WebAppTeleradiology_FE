@@ -61,11 +61,11 @@ const PatientForm = ({
     const uploadImage = async (imageFile: File): Promise<string> => {
         const formData = new FormData();
         formData.append("file", imageFile);
-        formData.append("upload_preset", "zxyz9eff");
+        formData.append("upload_preset", "je2ffmja");
 
         try {
             const response = await axios.post(
-                "https://api.cloudinary.com/v1_1/karera/image/upload",
+                "https://api.cloudinary.com/v1_1/teleradiology/image/upload",
                 formData
             );
             return response.data.url;

@@ -50,11 +50,11 @@ const PatientDetail = ({
         </div>
       </div>
 
-      <p className="py-2 text-lg font-semibold">patient explanatiom</p>
+      <p className="py-2 text-lg font-semibold">Radiographer explanation</p>
       <p className="my-2 min-h-[20rem] w-full border border-gray-200 p-4">
         {patient?.patient.desc}
       </p>
-      <p className="py-2 text-lg font-semibold">Specialist explanatiom</p>
+      <p className="py-2 text-lg font-semibold">Specialist explanation</p>
       <p className="min-h-[20rem] w-full border border-gray-200 p-4">
         {patient?.patient.comment}
       </p>

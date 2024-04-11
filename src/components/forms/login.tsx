@@ -49,10 +49,10 @@ export default function Form({
           Login
         </button>
       </form>
-      <p className="flex gap-2">
-        don't have an account
-        <span className="cursor-pointer font-bold">Sign up</span>
-      </p>
+      {/* <p className="flex gap-2">
+        Don't have an account?
+        <span className="cursor-pointer font-bold">Contact Admin</span>
+      </p> */}
     </div>
   );
 }
