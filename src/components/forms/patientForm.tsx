@@ -58,14 +58,21 @@ const PatientForm = ({
         }
     };
 
+
+
     const uploadImage = async (imageFile: File): Promise<string> => {
         const formData = new FormData();
+
+        // const cloudName = process.env.REACT_APP_CLOUDINARY_CLOUD_NAME; // Access from environment variables
+        // const uploadPreset = process.env.CLOUDINARY_UPLOAD_PRESET; // Access from environment variables
+
+        const uploadUrl = `https://api.cloudinary.com/v1_1/teleradiology/image/upload`;
         formData.append("file", imageFile);
         formData.append("upload_preset", "je2ffmja");
-
+    
         try {
             const response = await axios.post(
-                "https://api.cloudinary.com/v1_1/teleradiology/image/upload",
+                uploadUrl,
                 formData
             );
             return response.data.url;
