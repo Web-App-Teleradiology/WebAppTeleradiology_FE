@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import SpecialistTable from "../components/patients/specialistTable";
 import { getRadiologyPatient } from "../components/api";
 
-const title = "Specialist";
+const title = "Patients";
 
 export default function SpecialistPage() {
   const [patients, setPatients] = useState([]);

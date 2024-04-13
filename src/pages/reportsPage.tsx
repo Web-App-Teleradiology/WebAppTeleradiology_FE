@@ -44,7 +44,7 @@ export default function ReportsPage() {
           className="my-1 w-1/2 rounded-lg border border-gray-200 px-2 py-3 font-normal outline-gray-400 placeholder:font-normal placeholder:text-slate-600"
         />
         <button onClick={handlePrint} className="text-green-600">
-          Print patient list!
+          Print patient list
         </button>
 
       </div>
