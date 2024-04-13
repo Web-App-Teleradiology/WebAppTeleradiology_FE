@@ -39,7 +39,7 @@ export const data = [
       },
       {
         id: 5,
-        title: "Settings",
+        title: "Users",
         icon: <SettingsIcon />,
         link: "settings",
         role: ["admin"],

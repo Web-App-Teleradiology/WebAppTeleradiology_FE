@@ -58,7 +58,7 @@ const PatientHistory = () => {
                     name="search"
                     id="search"
                     onChange={(event) => setSearch(event.target.value)}
-                    placeholder="search patient ..."
+                    placeholder="Search patient ..."
                     className="my-1 w-1/2 rounded-lg border border-gray-200 px-2 py-3 font-normal outline-gray-400 placeholder:font-normal placeholder:text-slate-600"
                 />
                 {(loggedInUserRole === Role.Admin || loggedInUserRole === Role.Radiologist) && (<button
