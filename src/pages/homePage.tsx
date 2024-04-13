@@ -36,7 +36,7 @@ const HomePage = () => {
         {homeData.map((data) => (
           <div key={data.key}>
             <div className="cursor-pointer rounded-md bg-white p-4 shadow-md hover:bg-gray-100">
-              <h2 className="mb-2 text-xl font-bold">{data?.title}</h2>
+              <h2 className="mb-2 text-xl font-bold capitalize">{data?.title}</h2>
               <CircularProgressbarWithChildren
                 value={data.percentage}
                 styles={buildStyles({
