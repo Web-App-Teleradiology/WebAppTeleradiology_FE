@@ -3,8 +3,9 @@ import { postUser } from "../api";
 import { Role } from "../../types/enum";
 import { toast } from "react-toastify";
 
+
 const UserForm = ({ onFetchUsers }: { onFetchUsers: () => void }) => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<any>({
     firstName: "",
     lastName: "",
     email: "",
@@ -13,7 +14,7 @@ const UserForm = ({ onFetchUsers }: { onFetchUsers: () => void }) => {
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData((prevFormData) => {
+    setFormData((prevFormData: any) => {
       return {
         ...prevFormData,
         [event.target.name]: event.target.value,
@@ -23,7 +24,7 @@ const UserForm = ({ onFetchUsers }: { onFetchUsers: () => void }) => {
   const handleChangeSelectedInput = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {
-    setFormData((prevFormData) => ({
+    setFormData((prevFormData: any) => ({
       ...prevFormData,
       [event.target.name]: event.target.value,
     }));
