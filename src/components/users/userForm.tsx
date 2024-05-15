@@ -11,6 +11,7 @@ const UserForm = ({ onFetchUsers }: { onFetchUsers: () => void }) => {
     email: "",
     role: Role.Role,
     password: "",
+    isActive: true
   });
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
